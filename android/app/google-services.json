@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "463768998916",
+    "project_id": "veregoodapps",
+    "storage_bucket": "veregoodapps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463768998916:android:e961036a4a5979a79dd151",
+        "android_client_info": {
+          "package_name": "com.example.veregoodapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "463768998916-n20duotht476e4b3ti4t7hihnt0n3lp4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.veregoodapps",
+            "certificate_hash": "5e8f9b2763f2464c602d94f8aa9541d9e0d29770"
+          }
+        },
+        {
+          "client_id": "463768998916-7luaco8par3v2meeq40q1p9on5m433b1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeIRNyWOoxj0Ap8SmpIuLEudcUGtIpHfs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "463768998916-7luaco8par3v2meeq40q1p9on5m433b1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
