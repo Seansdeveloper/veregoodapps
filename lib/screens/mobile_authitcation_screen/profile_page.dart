@@ -41,268 +41,273 @@ class MapScreenState extends State<ProfilePage>
         //           color: Colors.black)),
         // ),),
         body: SafeArea(
-          child: ListView(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Stack(fit: StackFit.loose, children: <Widget>[
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                          width: 140.0,
-                          height: 140.0,
-                          decoration:  const  BoxDecoration(
-                            shape: BoxShape.circle,
-                           color:Colors.blueAccent,
-                          ),
-                      child:Image.asset(Assets.assetsAs),),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Stack(fit: StackFit.loose, children: <Widget>[
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                            width: 140.0,
+                            height: 140.0,
+                            decoration:  const  BoxDecoration(
+                              shape: BoxShape.circle,
+                             color:Colors.blueAccent,
+                            ),
+                        child:Image.asset(Assets.assetsAs),),
 
-                    ],
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.only(top: 90.0, right: 100.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const <Widget>[
-                          CircleAvatar(
-                            backgroundColor: Colors.red,
-                            radius: 20.0,
-                            child: Icon(
-                              Icons.camera_alt,
-                              color: Colors.white,
-                            ),
-                          )
-                        ],
-                      )),
-                ]),
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height,
-                color: Theme.of(context).scaffoldBackgroundColor,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
+                      ],
+                    ),
                     Padding(
-                        padding: const EdgeInsets.only(
-                            left: 25.0, right: 25.0, top: 25.0),
+                        padding: const EdgeInsets.only(top: 90.0, right: 100.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          mainAxisSize: MainAxisSize.max,
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children:  <Widget>[
-                                Text(
-                                  'personal Information'.tr,
-                                  style: const TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                _status ? _getEditIcon() : Container(),
-                              ],
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            CircleAvatar(
+                              backgroundColor: Colors.red,
+                              radius: 20.0,
+                              child: Icon(
+                                Icons.camera_alt,
+                                color: Colors.white,
+                              ),
                             )
                           ],
                         )),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            left: 25.0, right: 25.0, top: 25.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children:  <Widget>[
-                                Text(
-                                  'Name'.tr,
-                                  style:const TextStyle(
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            left: 25.0, right: 25.0, top: 2.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: <Widget>[
-                            Flexible(
-                              child: TextField(
-                                decoration:  InputDecoration(
-                                  hintText: "Enter Your Name".tr,
-                                ),
-                                enabled: !_status,
-                                autofocus: !_status,
-
+                  ]),
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height,
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                          padding: const EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children:  <Widget>[
+                                  Text(
+                                    'personal Information'.tr,
+                                    style: const TextStyle(
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            left: 25.0, right: 25.0, top: 25.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children:  <Widget>[
-                                Text(
-                                  'Email ID'.tr,
-                                  style: TextStyle(
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            left: 25.0, right: 25.0, top: 2.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: <Widget>[
-                            Flexible(
-                              child: TextField(
-                                decoration:  InputDecoration(
-                                    hintText: "Enter Email ID".tr),
-                                enabled: !_status,
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  _status ? _getEditIcon() : Container(),
+                                ],
+                              )
+                            ],
+                          )),
+                      Padding(
+                          padding: const EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children:  <Widget>[
+                                  Text(
+                                    'Name'.tr,
+                                    style:const TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            left: 25.0, right: 25.0, top: 25.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children:  <Widget>[
-                                Text(
-                                  'Mobile'.tr,
-                                  style:const  TextStyle(
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            left: 25.0, right: 25.0, top: 2.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: <Widget>[
-                            Flexible(
-                              child: TextField(
-
-                                decoration:  InputDecoration(
-                                  labelText:controller.controllerText
-                                      .value,
-                                    hintText: "MOBILE".tr,),
-                                enabled: false,
-                                readOnly: true,
-
-
-                              ),
-                            ),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            left: 25.0, right: 25.0, top: 25.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              flex: 2,
-                              child: Text(
-                                'Pin Code'.tr,
-                                style: const TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child:  Text(
-                                'Country'.tr,
-                                style: const TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            left: 25.0, right: 25.0, top: 2.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Flexible(
-                              flex: 2,
-                              child: Padding(
-                                padding:  EdgeInsets.only(right: 10.0),
+                            ],
+                          )),
+                      Padding(
+                          padding: const EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Flexible(
                                 child: TextField(
                                   decoration:  InputDecoration(
-                                      hintText: "Enter your PinCode".tr),
+                                    hintText: "Enter Your Name".tr,
+                                  ),
+                                  enabled: !_status,
+                                  autofocus: !_status,
+
+                                ),
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: const EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children:  <Widget>[
+                                  Text(
+                                    'Email ID'.tr,
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: const EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Flexible(
+                                child: TextField(
+                                  decoration:  InputDecoration(
+                                      hintText: "Enter Email ID".tr),
                                   enabled: !_status,
                                 ),
                               ),
-                            ),
-                            Flexible(
-                              flex: 2,
-                              child: TextField(
-                                decoration:  InputDecoration(
-                                    hintText: "Enter your country".tr),
-                                enabled: !_status,
+                            ],
+                          )),
+                      Padding(
+                          padding: const EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children:  <Widget>[
+                                  Text(
+                                    'Mobile'.tr,
+                                    style:const  TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        )),
-                    !_status ? _getActionButtons() :
-                    InkWell(
-                      onTap: (){
-                        Get.to(()=>SliderLayoutView());
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.all(30),
-                        padding: const EdgeInsets.only(top: 10),
-                        width: MediaQuery.of(context).size.width,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.red
+                            ],
+                          )),
+                      Padding(
+                          padding: const EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Flexible(
+                                child: TextField(
+
+                                  decoration:  InputDecoration(
+                                    labelText:controller.controllerText
+                                        .value,
+                                      hintText: "MOBILE".tr,),
+                                  enabled: false,
+                                  readOnly: true,
+
+
+                                ),
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: const EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Expanded(
+                                flex: 2,
+                                child: Text(
+                                  'Pin Code'.tr,
+                                  style: const TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child:  Text(
+                                  'Country'.tr,
+                                  style: const TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: const EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Flexible(
+                                flex: 2,
+                                child: Padding(
+                                  padding:  EdgeInsets.only(right: 10.0),
+                                  child: TextField(
+                                    decoration:  InputDecoration(
+                                        hintText: "Enter your PinCode".tr),
+                                    enabled: !_status,
+                                  ),
+                                ),
+                              ),
+                              Flexible(
+                                flex: 2,
+                                child: TextField(
+                                  decoration:  InputDecoration(
+                                      hintText: "Enter your country".tr),
+                                  enabled: !_status,
+                                ),
+                              ),
+                            ],
+                          )),
+                      !_status ? _getActionButtons() :
+                      InkWell(
+                        onTap: (){
+                          Get.to(()=>SliderLayoutView());
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.all(30),
+                          padding: const EdgeInsets.only(top: 10),
+                          width: MediaQuery.of(context).size.width,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.red
+                          ),
+                          child:  FittedBox(child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text("Home page",textAlign: TextAlign.center,),
+                          )),
                         ),
-                        child:  Text("Home page",style: TextStyle(fontSize: 25),textAlign: TextAlign.center,),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ));
   }

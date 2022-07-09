@@ -2,6 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:veregoodapps/screens/product_details_page/product_details_page.dart';
 import 'data/navigation_model.dart';
 import 'generated/assets.dart';
 
@@ -31,8 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          extendBody: true,
-          extendBodyBehindAppBar: true,
+
+
           bottomNavigationBar:   CurvedNavigationBar(
             buttonBackgroundColor: Color.fromRGBO(36, 94, 171, 1),
 
@@ -192,9 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     bestSeller(),
-                    SizedBox(
-                      height: 50,
-                    )
+                    accessories(),
                   ],
                 ),
               ),
@@ -247,10 +248,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Wrap(
                 children:  [
                   Padding(
-                    padding: const EdgeInsets.only(left: 8,right: 8,top: 2),
+                    padding: const EdgeInsets.only(left: 8,right: 8,top: 5),
                     child: Column(
                       children: [
-                        CircleAvatar(radius: 40,backgroundColor: Colors.blue,
+                        CircleAvatar(radius: 35,backgroundColor: Colors.blue,
                           child: Image.asset(Assets.assetsBodyguard),
                         ),
                         Text("bodygurad")
@@ -258,10 +259,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8,right: 8,top: 2),
+                    padding: const EdgeInsets.only(left: 8,right: 8,top: 5),
                     child: Column(
                       children: [
-                        CircleAvatar(radius: 40,backgroundColor: Colors.blue,
+                        CircleAvatar(radius: 35,backgroundColor: Colors.blue,
                           child: Image.asset(Assets.assetsBodyguard),
                         ),
                         Text("bodygurad")
@@ -269,10 +270,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8,right: 8,top: 2),
+                    padding: const EdgeInsets.only(left: 8,right: 8,top: 5),
                     child: Column(
                       children: [
-                        CircleAvatar(radius: 40,backgroundColor: Colors.blue,
+                        CircleAvatar(radius: 35,backgroundColor: Colors.blue,
                           child: Image.asset(Assets.assetsBodyguard),
                         ),
                         Text("bodygurad")
@@ -280,10 +281,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8,right: 8,top: 2),
+                    padding: const EdgeInsets.only(left: 8,right: 8,top: 5),
                     child: Column(
                       children: [
-                        CircleAvatar(radius: 40,backgroundColor: Colors.blue,
+                        CircleAvatar(radius: 35,backgroundColor: Colors.blue,
                           child: Image.asset(Assets.assetsBodyguard),
                         ),
                         Text("bodygurad")
@@ -297,7 +298,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         Expanded(
           child: Container(
-            height: 236,
+            height: 243,
             color: Colors.white,
             child: Image.asset(Assets.assetsShoeman2),
 
@@ -311,26 +312,31 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget bestSeller(){
     return  Container(
-      height: 400,
+      height: 500,
       child: GridView.count(
         physics: NeverScrollableScrollPhysics(),
-        crossAxisCount: 2,
+        crossAxisCount: 2,childAspectRatio: 0.9,
         children:  List<Widget>.generate(4, (index) {
           return  GridTile(
-            child:  Card(
-                color: Colors.blue.shade200,
-                child: Padding(
-                  padding:EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(Assets.assetsShoeman2,height: 140,alignment: Alignment.center,),
-                      Text("Shoe Collection" ,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-                      Text("Sports wear" ,style: TextStyle(fontSize: 15))
+            child:  InkWell(
+              onTap: () {
+                Get.to(()=>ProductDetails());
+              },
+              child: Card(
+                  color: Colors.blue.shade200,
+                  child: Padding(
+                    padding:EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset(Assets.assetsShoeman2,height: 140,alignment: Alignment.center,),
+                        Text("Shoe Collection" ,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                        Text("Sports wear" ,style: TextStyle(fontSize: 15))
 
-                    ],
-                  ),
-                )
+                      ],
+                    ),
+                  )
+              ),
             ),
           );
         }),
@@ -338,6 +344,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
+ Widget accessories(){
+    return Padding(
+      padding: const EdgeInsets.only(top: 6),
+      child: Column(children: [
+        Image.asset(Assets.assetsShop,height: 150,width:double.infinity,)
+      ],),
+    );
+ }
 
 }

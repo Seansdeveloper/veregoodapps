@@ -14,6 +14,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
 
+
     );
   }
 }

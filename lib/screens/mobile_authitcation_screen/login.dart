@@ -313,14 +313,17 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                           width: 50,
                         ),
                         FittedBox(
-                          child: Text(
-                            "Google Sign In".tr,
-                            style: TextStyle(
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .color,
-                                fontSize: 18),
+                          child: Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: Text(
+                              "Google Sign In".tr,
+                              style: TextStyle(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .color,
+                                  fontSize: 18),
+                            ),
                           ),
                         ),
                       ],

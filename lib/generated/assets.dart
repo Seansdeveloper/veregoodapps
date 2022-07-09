@@ -116,6 +116,7 @@ class Assets {
   static const String assetsShoeman7 = 'assets/shoeman_7.png';
   static const String assetsShoeman8 = 'assets/shoeman_8.png';
   static const String assetsShoeman9 = 'assets/shoeman_9.png';
+  static const String assetsShop = 'assets/shop.jpg';
   static const String assetsSpace = 'assets/space.png';
   static const String assetsSpecial = 'assets/special.png';
   static const String assetsStorage = 'assets/storage.png';
