@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     controller = AnimationController(
-        duration: Duration(milliseconds: 2500), vsync: this);
+        duration: Duration(milliseconds: 1500), vsync: this);
     opacity = Tween<double>(begin: 1.0, end: 0.0).animate(controller)
       ..addListener(() {
         setState(() {});
@@ -60,7 +60,7 @@ class _SplashScreenState extends State<SplashScreen>
                       children: [
                         TextSpan(text: 'Powered by'.tr, style:  TextStyle(fontWeight: FontWeight.bold)),
                         TextSpan(
-                            text: 'saurav singh'.tr,
+                            text:   ' saurav singh'.tr,
                             style:const  TextStyle(fontWeight: FontWeight.bold))
                       ]),
                 ),

@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../constant/color.dart';
 import '../../constant/image.dart';
+import '../cart_page/cart_page.dart';
 
 class ProductDetails extends StatefulWidget {
   final String? imageSho;
@@ -49,9 +50,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                     SizedBox(
                       width: 10,
                     ),
-                    Icon(
-                      Icons.shopping_cart,
-                      size: 22,
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(()=>CartPage());
+                      },
+                      child: Icon(
+                        Icons.shopping_cart,
+                        size: 22,
+                      ),
                     ),
                   ],
                 )

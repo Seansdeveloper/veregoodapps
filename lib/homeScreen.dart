@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:veregoodapps/screens/cart_page/cart_page.dart';
 import 'package:veregoodapps/screens/product_details_page/product_details_page.dart';
 import 'constant/image.dart';
 import 'data/navigation_model.dart';
@@ -110,7 +111,11 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
             width: 20,
             ),
-            Icon(Icons.shopping_cart,size: 25,)
+            GestureDetector(
+              onTap: (){
+                Get.to(()=>CartPage());
+              },
+                child: Icon(Icons.shopping_cart,size: 25,))
           ],)
 
         ),
