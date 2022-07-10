@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:veregoodapps/screens/product_details_page/product_details_page.dart';
+import 'constant/image.dart';
 import 'data/navigation_model.dart';
 import 'generated/assets.dart';
 
@@ -34,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-
+           extendBody: true,
 
           bottomNavigationBar:   CurvedNavigationBar(
             buttonBackgroundColor: Color.fromRGBO(36, 94, 171, 1),
@@ -72,37 +73,50 @@ class _HomeScreenState extends State<HomeScreen> {
    ),
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromRGBO(36, 94, 171, 1),
+      appBar:    PreferredSize(
+        
+        preferredSize: Size.fromHeight(80),
+        child: Padding(
+          padding:
+          const EdgeInsets.only(top: 30, left: 10, right: 10, bottom: 10),
+          child:Row(children: [
+            Expanded(
+              child: TextField(
+                style: const TextStyle(fontSize: 22.0, color: Colors.black),
+                decoration: InputDecoration(
+                    enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(color: Colors.white, width: 2)),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+
+                    hintStyle: const TextStyle(
+                      color: Colors.black,
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    prefixIcon: const Icon(
+                      Icons.search_rounded,
+                      color: Colors.black,
+                    ),
+                    suffixIcon: const Icon(
+                      Icons.mic,
+                      color: Colors.black,
+                    )),
+              ),
+            ),
+            SizedBox(
+            width: 20,
+            ),
+            Icon(Icons.shopping_cart,size: 25,)
+          ],)
+
+        ),
+      ),
       body:  Column(
         children: <Widget>[
-          Padding(
-            padding:
-            const EdgeInsets.only(top: 30, left: 10, right: 10, bottom: 10),
-            child: TextField(
-              style: const TextStyle(fontSize: 22.0, color: Colors.black),
-              decoration: InputDecoration(
-                  enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      borderSide: BorderSide(color: Colors.white, width: 2)),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  hintText: "Search",
-                  hintStyle: const TextStyle(
-                    color: Colors.black,
-                  ),
-                  fillColor: Colors.white,
-                  filled: true,
-                  prefixIcon: const Icon(
-                    Icons.search_rounded,
-                    color: Colors.black,
-                  ),
-                  suffixIcon: const Icon(
-                    Icons.mic,
-                    color: Colors.black,
-                  )),
-            ),
-          ),
           Container(
             height: 38,
             width: MediaQuery.of(context).size.width,
@@ -163,19 +177,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         scrollDirection: Axis.horizontal,),
 
                       items: [Assets.assetsRefer,Assets.assetsRefer,Assets.assetsRefer,Assets.assetsRefer].map((i) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return Container(
-                                width: MediaQuery.of(context).size.width,
-                                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                                decoration: BoxDecoration(color: Colors.transparent),
-                                child: GestureDetector(
-                                    child: Image.asset(i, fit: BoxFit.fill),
-                                    onTap: () {
+                        return Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: EdgeInsets.symmetric(horizontal: 5.0),
+                            decoration: BoxDecoration(color: Colors.transparent),
+                            child: GestureDetector(
+                                child: Image.asset(i, fit: BoxFit.fill),
+                                onTap: () {
 
-                                    }));
-                          },
-                        );
+                                }));
                       }).toList(),
                     ),
 
@@ -195,7 +205,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     bestSeller(),
-                    accessories(),
+                    accessories(context),
+                    upToDeals()
                   ],
                 ),
               ),
@@ -252,7 +263,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       children: [
                         CircleAvatar(radius: 35,backgroundColor: Colors.blue,
-                          child: Image.asset(Assets.assetsBodyguard),
+                          child: Image.asset(Assets.assetsBodyguard,fit: BoxFit.contain),
                         ),
                         Text("bodygurad")
                       ],
@@ -263,9 +274,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       children: [
                         CircleAvatar(radius: 35,backgroundColor: Colors.blue,
-                          child: Image.asset(Assets.assetsBodyguard),
+                          child: Image.asset(Assets.assetsParking,fit: BoxFit.contain),
                         ),
-                        Text("bodygurad")
+                        Text("Rent")
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8,right: 8,top: 5),
+                    child: Column(
+                      children: [
+                        CircleAvatar(radius: 35,backgroundColor: Colors.blue,
+                          child: Image.asset(Assets.assetsStorage,fit: BoxFit.scaleDown,),
+                        ),
+                        Text("HouseRent")
                       ],
                     ),
                   ),
@@ -276,18 +298,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         CircleAvatar(radius: 35,backgroundColor: Colors.blue,
                           child: Image.asset(Assets.assetsBodyguard),
                         ),
-                        Text("bodygurad")
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8,right: 8,top: 5),
-                    child: Column(
-                      children: [
-                        CircleAvatar(radius: 35,backgroundColor: Colors.blue,
-                          child: Image.asset(Assets.assetsBodyguard),
-                        ),
-                        Text("bodygurad")
+                        Text("Pay")
                       ],
                     ),
                   )
@@ -312,15 +323,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget bestSeller(){
     return  Container(
-      height: 500,
+      height: 450,
       child: GridView.count(
         physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 2,childAspectRatio: 0.9,
         children:  List<Widget>.generate(4, (index) {
           return  GridTile(
+
             child:  InkWell(
               onTap: () {
-                Get.to(()=>ProductDetails());
+                Get.to(()=>ProductDetails(Imagess.imageShoes[index]));
               },
               child: Card(
                   color: Colors.blue.shade200,
@@ -329,7 +341,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Image.asset(Assets.assetsShoeman2,height: 140,alignment: Alignment.center,),
+                        Image.asset(Imagess.imageShoes[index],height: 140,alignment: Alignment.center,),
                         Text("Shoe Collection" ,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
                         Text("Sports wear" ,style: TextStyle(fontSize: 15))
 
@@ -344,13 +356,63 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
- Widget accessories(){
+ Widget accessories(context){
     return Padding(
-      padding: const EdgeInsets.only(top: 6),
-      child: Column(children: [
-        Image.asset(Assets.assetsShop,height: 150,width:double.infinity,)
+      padding: const EdgeInsets.only(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+        Container(
+          height: 150,
+            width: MediaQuery.of(context).size.width,
+
+            color: Colors.orangeAccent,
+            child: Image.asset(Assets.assetsBackground,height: 150,width:double.infinity,)),
+        Padding(
+          padding:  EdgeInsets.only(top: 2,left: 5,right: 5),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Accessories",style: TextStyle(fontSize: 20),),
+              Text("See all"),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: Text("Shoes,bag,glasses"),
+        ),
       ],),
     );
  }
+
+
+ upToDeals(){
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+        Text("Up to 50% off- Deal of the day",style: TextStyle(fontSize: 22),),
+        Container(
+             height: 450,
+          child: GridView.count(
+          physics: NeverScrollableScrollPhysics(),
+   crossAxisCount: 2,childAspectRatio: 0.9,
+   children:  List<Widget>.generate(4, (index) {
+     return GridTile(
+
+       child: Card(
+         color: Colors.blue.shade200,
+         child:Image.asset(Imagess.image[index],height: 140,alignment: Alignment.center,),
+       ),);
+   }
+        )
+          ))
+      ],),
+    );
+ }
+
 
 }
