@@ -7,8 +7,13 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class TextController extends GetxController {
   final textController = TextEditingController();
-
   RxString controllerText = ''.obs;
+
+
+
+
+
+
 
 
   @override
@@ -18,4 +23,13 @@ class TextController extends GetxController {
       controllerText.value = textController.text;
     });
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+
+
 }

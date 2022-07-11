@@ -271,7 +271,7 @@ body: TabBarView(
         decoration: BoxDecoration(
           color: appbar,
           borderRadius: BorderRadius.circular(10)
-        ),
+        ),  
         child: FittedBox(child: Text("Proceed To Buy (10 Items)")),
       )
 

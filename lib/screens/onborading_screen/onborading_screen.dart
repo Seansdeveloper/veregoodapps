@@ -87,7 +87,8 @@ class _SliderLayoutViewState extends State<SliderLayoutView> {
                ),
               GestureDetector(
                 onTap: (){
-               Get.to(()=>HomeScreen(0));
+                  Get.offAll(()=>HomeScreen(0));
+
                 },
                 child:   const Align(
                     alignment: Alignment.bottomLeft,

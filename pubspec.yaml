@@ -87,19 +87,19 @@ flutter:
   # example:
   fonts:
 
-    - family: Poppins-Black
+    - family: PoppinsBlack
       fonts:
-        - asset: assets/Font/Poppins-Black.ttf
+        - asset: assets/Font/PoppinsBlack.ttf
 
 
-    - family: Poppins-Regular
+    - family: PoppinsRegular
       fonts:
-        - asset: assets/Font/Poppins-Regular.ttf
+        - asset: assets/Font/PoppinsRegular.ttf
 
 
-    - family: Poppins-Thin
+    - family: PoppinsThin
       fonts:
-        - asset: assets/Font/Poppins-Thin.ttf
+        - asset: assets/Font/PoppinsThin.ttf
 
 
   #

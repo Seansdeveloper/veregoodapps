@@ -2,24 +2,9 @@
 class Assets {
   Assets._();
 
-  static const String FontPoppinsBlack = 'assets/Font/Poppins-Black.ttf';
-  static const String FontPoppinsBlackItalic = 'assets/Font/Poppins-BlackItalic.ttf';
-  static const String FontPoppinsBold = 'assets/Font/Poppins-Bold.ttf';
-  static const String FontPoppinsBoldItalic = 'assets/Font/Poppins-BoldItalic.ttf';
-  static const String FontPoppinsExtraBold = 'assets/Font/Poppins-ExtraBold.ttf';
-  static const String FontPoppinsExtraBoldItalic = 'assets/Font/Poppins-ExtraBoldItalic.ttf';
-  static const String FontPoppinsExtraLight = 'assets/Font/Poppins-ExtraLight.ttf';
-  static const String FontPoppinsExtraLightItalic = 'assets/Font/Poppins-ExtraLightItalic.ttf';
-  static const String FontPoppinsItalic = 'assets/Font/Poppins-Italic.ttf';
-  static const String FontPoppinsLight = 'assets/Font/Poppins-Light.ttf';
-  static const String FontPoppinsLightItalic = 'assets/Font/Poppins-LightItalic.ttf';
-  static const String FontPoppinsMedium = 'assets/Font/Poppins-Medium.ttf';
-  static const String FontPoppinsMediumItalic = 'assets/Font/Poppins-MediumItalic.ttf';
-  static const String FontPoppinsRegular = 'assets/Font/Poppins-Regular.ttf';
-  static const String FontPoppinsSemiBold = 'assets/Font/Poppins-SemiBold.ttf';
-  static const String FontPoppinsSemiBoldItalic = 'assets/Font/Poppins-SemiBoldItalic.ttf';
-  static const String FontPoppinsThin = 'assets/Font/Poppins-Thin.ttf';
-  static const String FontPoppinsThinItalic = 'assets/Font/Poppins-ThinItalic.ttf';
+  static const String FontPoppinsBlack = 'assets/Font/PoppinsBlack.ttf';
+  static const String FontPoppinsRegular = 'assets/Font/PoppinsRegular.ttf';
+  static const String FontPoppinsThin = 'assets/Font/PoppinsThin.ttf';
   static const String assetsAppicon = 'assets/appicon.png';
   static const String assetsAppicons = 'assets/appicons.jpg';
   static const String assetsApplogo = 'assets/applogo.png';
@@ -85,6 +70,7 @@ class Assets {
   static const String assetsLive = 'assets/live.gif';
   static const String assetsLogo = 'assets/logo.png';
   static const String assetsMenu = 'assets/menu.svg';
+  static const String assetsMobiles = 'assets/mobiles.png';
   static const String assetsNotification = 'assets/notification.png';
   static const String assetsOffer = 'assets/offer.png';
   static const String assetsOnboardingFirst = 'assets/onboarding_first.gif';
