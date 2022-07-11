@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:veregoodapps/screens/cart_page/cart_page.dart';
+import 'package:veregoodapps/screens/explore_screen/ExploreScreen.dart';
 import 'package:veregoodapps/screens/home_screen/home.dart';
 import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
 import 'package:veregoodapps/screens/product_details_page/product_details_page.dart';
@@ -81,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             resizeToAvoidBottomInset: false,
             backgroundColor: const Color.fromRGBO(36, 94, 171, 1),
-            appBar:landingPageController.tabIndex.value!=3? PreferredSize(
+            appBar:landingPageController.tabIndex.value==0? PreferredSize(
               preferredSize: Size.fromHeight(80),
               child: Padding(
                   padding:
@@ -137,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
               index: landingPageController.tabIndex.value,
               children: [
                 HomePage(),
-                Text("second page"),
+                ExploreScreen(),
                 ServicePage(),
                 UserProfile(),
               ],
