@@ -293,15 +293,15 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
               color: Colors.black,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 50,left: 60,right:60),
+              padding: const EdgeInsets.only(top: 40,left: 50,right:50 ),
               child: InkWell(
                 onTap: () {},
                 child: Container(
-                  width: 250,
-                  padding: EdgeInsets.all(5),
+
+                  padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.blue,
+                    color: Color.fromRGBO(245, 245, 245, 1),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

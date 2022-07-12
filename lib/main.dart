@@ -61,7 +61,6 @@ void main() async{
 
           /* dark theme settings */
         ),
-        themeMode:ThemeMode.dark ,
         home: SplashScreen(),
       ));
 }
