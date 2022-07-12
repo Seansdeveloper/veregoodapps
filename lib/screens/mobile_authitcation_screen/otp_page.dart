@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:lottie/lottie.dart';
+
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:veregoodapps/homeScreen.dart';
 import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
