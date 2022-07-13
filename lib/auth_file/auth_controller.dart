@@ -28,23 +28,23 @@ class AuthController extends GetxController {
     googleSignInAccount = Rx<GoogleSignInAccount?>(googleSign.currentUser);
 
 
-    // firebaseUser.bindStream(auth.userChanges());
-    // ever(firebaseUser, _setInitialScreen);
+    firebaseUser.bindStream(auth.userChanges());
+    ever(firebaseUser, _setInitialScreen);
 
 
     googleSignInAccount.bindStream(googleSign.onCurrentUserChanged);
     ever(googleSignInAccount, _setInitialScreenGoogle);
   }
 
-  // _setInitialScreen(User? user) {
-  //   if (user == null) {
-  //     // if the user is not found then the user is navigated to the Register Screen
-  //     Get.offAll(() => const LoginScreen());
-  //   } else {
-  //     // if the user exists and logged in the the user is navigated to the Home Screen
-  //     Get.offAll(() => HomeScreen(0));
-  //   }
-  // }
+  _setInitialScreen(User? user) {
+    if (user == null) {
+      // if the user is not found then the user is navigated to the Register Screen
+      Get.offAll(() => const LoginScreen());
+    } else {
+      // if the user exists and logged in the the user is navigated to the Home Screen
+      Get.offAll(() => HomeScreen(0));
+    }
+  }
 
   _setInitialScreenGoogle(GoogleSignInAccount? googleSignInAccount) {
     print(googleSignInAccount);
@@ -59,24 +59,18 @@ class AuthController extends GetxController {
 
 
   Future<void> OtpVerified(String otp) async {
-    PhoneAuthCredential credential = PhoneAuthProvider.credential(
-                    verificationId: verifirdId, smsCode: otp);
-   await FirebaseAuth.instance
-      .signInWithCredential(credential)
-      .then((value) {
-                  print(value.user);
-                  // Get.offAll(() => HomeScreen(0));
-                }).catchError((onError) {
-                  print(onError.toString());
-                  Get.snackbar(
-                    "Error",
-                    onError.toString(),
-                    snackPosition: SnackPosition.BOTTOM,
-                  );
-
-                });
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+          verificationId: verifirdId, smsCode: otp);
+      Get.offAll(() => HomeScreen(0));
+    } catch (e) {
+      Get.snackbar(
+        "Please enter the correct otp",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
   }
-
 
 
 
@@ -91,6 +85,7 @@ class AuthController extends GetxController {
         AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
           idToken: googleSignInAuthentication.idToken,
+
         );
 
         await auth
@@ -110,17 +105,17 @@ class AuthController extends GetxController {
 
   void MobileAuthication(String phoneNumber) async {
     try {
+
       await auth.verifyPhoneNumber(
           phoneNumber: phoneNumber,
-          timeout: const Duration(seconds: 60),
+          timeout:  Duration(milliseconds: 10000),
 
           codeSent:
               (String verificationId, int? forceResendingToken) {
-                verifirdId=verificationId;
-                Get.to(() => OtpPage());
+                verifirdId = verificationId;
             print(
                 'Please check your phone for the verification code.');
-
+            Get.to(() => OtpPage());
           },
           codeAutoRetrievalTimeout: (String verificationId) {
             print("verification code: " + verificationId);

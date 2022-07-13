@@ -107,7 +107,7 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
             margin: const EdgeInsets.only(top: 100),
             padding: const EdgeInsets.only(left: 20,right: 20,top:10),
             decoration:  BoxDecoration(
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15)),
               color: Theme.of(context).backgroundColor,
             ),
             child: ListView(
@@ -136,7 +136,7 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                 const SizedBox(
                   height: 5,
                 ),
-                Image.asset(Assets.assetsApplogo,height: 150,width: 150,),
+                Image.asset(Assets.assetsAppicon,height: 150,width: 150,),
                 const SizedBox(
                   height: 20,
                 ),
@@ -279,7 +279,16 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                   child: Center(
                     child: ElevatedButton(
                         onPressed: () {
-                          authController.MobileAuthication(currentText);
+                          if(currentText.isNotEmpty){
+                            authController.MobileAuthication(currentText);
+                          }
+                         else{
+                            Get.snackbar(
+                              "Alert",
+                              "Please enter the phone number",
+                              snackPosition: SnackPosition.BOTTOM,
+                            );
+                          }
                        //   Get.to(() => OtpPage());
                         },
                         style: ElevatedButton.styleFrom(
@@ -303,7 +312,7 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                   color: Colors.black,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 40,left: 50,right:50 ),
+                  padding: const EdgeInsets.only(top: 40,left: 30,right:30 ),
                   child: InkWell(
                     onTap: () {
                       authController.signInWithGoogle();

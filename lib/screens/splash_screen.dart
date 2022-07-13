@@ -60,7 +60,7 @@ class _SplashScreenState extends State<SplashScreen>
                       children: [
                         TextSpan(text: 'Powered by'.tr, style:  TextStyle(fontWeight: FontWeight.bold)),
                         TextSpan(
-                            text:' apiscribe.com'.tr,
+                            text:' Aaitpro'.tr,
                             style:const  TextStyle(fontWeight: FontWeight.bold))
                       ]),
                 ),

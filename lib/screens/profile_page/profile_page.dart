@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:veregoodapps/screens/home_screen/home.dart';
+import 'package:veregoodapps/networking/urls.dart' as urls;
+import 'package:veregoodapps/networking/fetch.dart' as http;
 import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
 
 import '../../constant/string.dart';
 import '../../controler/controller.dart';
 import '../../generated/assets.dart';
+import '../../model/check_user/profile.dart';
 import '../../widget/list_view.dart';
+
 
 class UserProfile extends StatefulWidget {
   const UserProfile({Key? key}) : super(key: key);
@@ -18,7 +22,27 @@ class UserProfile extends StatefulWidget {
   State<UserProfile> createState() => _UserProfileState();
 }
 
+
+
 class _UserProfileState extends State<UserProfile> {
+
+
+
+
+
+  @override
+  Future<void> initState() async {
+    List<Profile> products;
+    dynamic response = await http
+        .get('${urls.CreateProfile}}', {});
+    products =
+        (response['responseData']['products'] as List<dynamic>).map((value) {
+          return Profile.fromJson(value);
+        }).toList();
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -199,7 +199,15 @@ class _OtpScreenState extends State<OtpScreen>
               child: Center(
                 child: ElevatedButton(
                     onPressed: () {
-                      authController.OtpVerified(currentText);
+                      if(currentText.isNotEmpty){
+                        authController.OtpVerified(currentText);
+                      }
+                   else{
+    Get.snackbar('alert', 'Please enter the otp'.tr,
+    colorText:
+    Theme.of(context).textTheme.bodyText1!.color,
+    snackPosition: SnackPosition.BOTTOM);
+                      }
                       // Get.to(() => ProfilePage());
                     },
                     style: ElevatedButton.styleFrom(
