@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:veregoodapps/screens/mobile_authitcation_screen/login.dart';
+import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
 
 import '../controler/controller.dart';
 import '../homeScreen.dart';
@@ -52,7 +53,7 @@ class AuthController extends GetxController {
       Get.offAll(() => const LoginScreen());
     } else {
       // if the user exists and logged in the the user is navigated to the Home Screen
-      Get.offAll(() => HomeScreen(0));
+      Get.offAll(() => ProfilePage());
     }
   }
 

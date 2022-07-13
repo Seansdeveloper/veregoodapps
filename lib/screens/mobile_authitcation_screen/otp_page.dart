@@ -87,7 +87,7 @@ class _OtpScreenState extends State<OtpScreen>
             const SizedBox(
               height: 5,
             ),
-            Image.asset(Assets.assetsIcib,height: 150,width: 100,),
+            Image.asset(Assets.assetsApplogo,height: 150,width: 100,),
             const SizedBox(
               height: 20,
             ),

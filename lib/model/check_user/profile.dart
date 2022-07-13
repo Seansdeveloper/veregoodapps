@@ -1,7 +1,7 @@
 class Profile {
   String? name;
   String? email;
-  Null? mobileNumber;
+  String? mobileNumber;
   String? countryCode;
 
   Profile({this.name, this.email, this.mobileNumber, this.countryCode});
