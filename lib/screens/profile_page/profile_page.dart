@@ -32,13 +32,7 @@ class _UserProfileState extends State<UserProfile> {
 
   @override
   Future<void> initState() async {
-    List<Profile> products;
-    dynamic response = await http
-        .get('${urls.CreateProfile}}', {});
-    products =
-        (response['responseData']['products'] as List<dynamic>).map((value) {
-          return Profile.fromJson(value);
-        }).toList();
+
     super.initState();
   }
 
