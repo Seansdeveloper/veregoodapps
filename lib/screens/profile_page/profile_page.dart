@@ -28,10 +28,8 @@ class _UserProfileState extends State<UserProfile> {
 
 
 
-
-
   @override
-  Future<void> initState() async {
+void initState()  {
 
     super.initState();
   }
