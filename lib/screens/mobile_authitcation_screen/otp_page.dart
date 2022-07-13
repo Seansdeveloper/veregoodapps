@@ -10,6 +10,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:veregoodapps/homeScreen.dart';
 import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
 
+import '../../controler/controller.dart';
 import '../../controler/text_controller.dart';
 import '../../generated/assets.dart';
 import '../../responsive/responsive.dart';
@@ -198,7 +199,8 @@ class _OtpScreenState extends State<OtpScreen>
               child: Center(
                 child: ElevatedButton(
                     onPressed: () {
-                      Get.to(() => ProfilePage());
+                      authController.OtpVerified(currentText);
+                      // Get.to(() => ProfilePage());
                     },
                     style: ElevatedButton.styleFrom(
                       primary: const Color.fromRGBO(36, 94, 171, 1),

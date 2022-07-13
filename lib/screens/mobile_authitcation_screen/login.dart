@@ -11,6 +11,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:veregoodapps/homeScreen.dart';
 import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
 
+import '../../controler/controller.dart';
 import '../../controler/text_controller.dart';
 import '../../generated/assets.dart';
 import '../../responsive/responsive.dart';
@@ -49,6 +50,7 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
   StreamController<ErrorAnimationType>? errorController;
   String currentText = "";
   final controller = Get.put(TextController());
+  final controllers = Get.find<TextController>();
   bool _flag=false;
 
   late Animation<double> _myAnimation;
@@ -175,7 +177,7 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                     ),
                     onChanged: (phone) {
                       if (kDebugMode) {
-                        print(phone.completeNumber);
+                        currentText=phone.completeNumber;
                       }
                     },
                     onCountryChanged: (country) {
@@ -277,7 +279,8 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                   child: Center(
                     child: ElevatedButton(
                         onPressed: () {
-                          Get.to(() => OtpPage());
+                          authController.MobileAuthication(currentText);
+                       //   Get.to(() => OtpPage());
                         },
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromRGBO(36, 94, 171, 1),
@@ -302,7 +305,9 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                 Padding(
                   padding: const EdgeInsets.only(top: 40,left: 50,right:50 ),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      authController.signInWithGoogle();
+                    },
                     child: Container(
 
                       padding: EdgeInsets.all(10),

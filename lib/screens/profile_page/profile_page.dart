@@ -7,6 +7,7 @@ import 'package:veregoodapps/screens/home_screen/home.dart';
 import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
 
 import '../../constant/string.dart';
+import '../../controler/controller.dart';
 import '../../generated/assets.dart';
 import '../../widget/list_view.dart';
 
@@ -122,7 +123,11 @@ class _UserProfileState extends State<UserProfile> {
                       itemCount: Strings.acountList.length,
                         itemBuilder:(
                             context,i){
-                      return ListField(Strings.acountList[i]);
+                      return InkWell(
+                        onTap: (){
+                          authController.signOut();
+                        },
+                          child: ListField(Strings.acountList[i]));
                     }),
                   ),
 

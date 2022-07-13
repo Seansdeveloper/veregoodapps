@@ -15,11 +15,6 @@ import 'language.dart';
 
 
 void main() async{
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-  // Stripe.publishableKey = "pk_test_51KPDPESHEdoMqgR5GxG1o3zzw3YypjgUXudHNKkmvQwz3uPkbBXMqfMwBqMcWfllMQJgKerqc27jisA8nZJWUGnB00rhpAEMty"; //"pk_live_51HRl3PHx0vNusgVBNbZD0eWNHA0N8h1XNMjEkMYhZFaWWXeZ4PEtWJu87VEZeKJnprS0tGTdxrmAfMCma5UI4uFA00LGuzwre2";
-  // Stripe.merchantIdentifier = 'VereGood';
-  // await Stripe.instance.applySettings();
   WidgetsFlutterBinding.ensureInitialized();
   await firebaseInitialization.then((value) {
     Get.put(AuthController());
