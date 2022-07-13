@@ -136,7 +136,7 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                 const SizedBox(
                   height: 5,
                 ),
-                Image.asset(Assets.assetsApplogo),
+                Image.asset(Assets.assetsLogo),
                 const SizedBox(
                   height: 20,
                 ),

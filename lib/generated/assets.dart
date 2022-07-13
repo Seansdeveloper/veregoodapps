@@ -68,7 +68,7 @@ class Assets {
   static const String assetsLanguage = 'assets/language.png';
   static const String assetsLatest = 'assets/latest.json';
   static const String assetsLive = 'assets/live.gif';
-  static const String assetsLogo = 'assets/logo.png';
+  static const String assetsLogo = 'assets/logo.PNG';
   static const String assetsMenu = 'assets/menu.svg';
   static const String assetsMobiles = 'assets/mobiles.png';
   static const String assetsNotification = 'assets/notification.png';

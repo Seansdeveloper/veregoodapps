@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
               Expanded(
                 child: Opacity(
                     opacity: opacity.value,
-                    child: new Image.asset(Assets.assetsApplogo)),
+                    child: new Image.asset(Assets.assetsLogo)),
               ),
               Center(
                 child: RichText(
@@ -60,7 +60,7 @@ class _SplashScreenState extends State<SplashScreen>
                       children: [
                         TextSpan(text: 'Powered by'.tr, style:  TextStyle(fontWeight: FontWeight.bold)),
                         TextSpan(
-                            text:' aaitpro.com'.tr,
+                            text:' apiscribe.com'.tr,
                             style:const  TextStyle(fontWeight: FontWeight.bold))
                       ]),
                 ),
