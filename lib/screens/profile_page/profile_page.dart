@@ -3,15 +3,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:veregoodapps/screens/home_screen/home.dart';
-import 'package:veregoodapps/networking/urls.dart' as urls;
-import 'package:veregoodapps/networking/fetch.dart' as http;
 import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
-
 import '../../constant/string.dart';
 import '../../controler/controller.dart';
 import '../../generated/assets.dart';
-import '../../model/check_user/profile.dart';
 import '../../widget/list_view.dart';
 
 

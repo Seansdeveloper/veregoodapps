@@ -5,6 +5,7 @@ class Assets {
   static const String FontPoppinsBlack = 'assets/Font/PoppinsBlack.ttf';
   static const String FontPoppinsRegular = 'assets/Font/PoppinsRegular.ttf';
   static const String FontPoppinsThin = 'assets/Font/PoppinsThin.ttf';
+  static const String assetsAccountIcon = 'assets/accountIcon.json';
   static const String assetsAppicon = 'assets/appicon.png';
   static const String assetsAppicons = 'assets/appicons.jpg';
   static const String assetsApplogo = 'assets/applogo.png';

@@ -176,14 +176,11 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                       ),
                     ),
                     onChanged: (phone) {
-                      if (kDebugMode) {
-                        currentText=phone.completeNumber;
-                      }
+                      currentText=phone.completeNumber;
                     },
                     onCountryChanged: (country) {
-                      if (kDebugMode) {
+
                         print('Country changed to: ${country.name}');
-                      }
                     },
                   ),
                 ),

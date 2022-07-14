@@ -42,7 +42,6 @@ class AuthController extends GetxController {
       Get.offAll(() => const LoginScreen());
     } else {
       // if the user exists and logged in the the user is navigated to the Home Screen
-      Get.offAll(() => HomeScreen(0));
     }
   }
 
@@ -59,17 +58,21 @@ class AuthController extends GetxController {
 
 
   Future<void> OtpVerified(String otp) async {
-    try {
+
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verifirdId, smsCode: otp);
-      Get.offAll(() => HomeScreen(0));
-    } catch (e) {
-      Get.snackbar(
-        "Please enter the correct otp",
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-      );
-    }
+      auth.signInWithCredential(credential).then((value) {
+        Get.off(()=>HomeScreen(0));
+        print(value.user);
+      }).catchError((onError) {
+        Get.snackbar(
+          "verfication faild",
+          "Please enter the correct OTP",
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      });
+
+
   }
 
 
@@ -123,7 +126,6 @@ class AuthController extends GetxController {
           },
           verificationCompleted:
               (PhoneAuthCredential phoneAuthCredential) async {
-            await auth.signInWithCredential(phoneAuthCredential);
             print("verificationCompleted");
 
           }, verificationFailed: (FirebaseAuthException error) {
