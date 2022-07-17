@@ -5,7 +5,6 @@ class Assets {
   static const String FontPoppinsBlack = 'assets/Font/PoppinsBlack.ttf';
   static const String FontPoppinsRegular = 'assets/Font/PoppinsRegular.ttf';
   static const String FontPoppinsThin = 'assets/Font/PoppinsThin.ttf';
-  static const String assetsAccountIcon = 'assets/accountIcon.json';
   static const String assetsAppicon = 'assets/appicon.png';
   static const String assetsAppicons = 'assets/appicons.jpg';
   static const String assetsApplogo = 'assets/applogo.png';
@@ -35,6 +34,7 @@ class Assets {
   static const String assetsCartitem = 'assets/cartitem.png';
   static const String assetsCheck = 'assets/check.json';
   static const String assetsDownload = 'assets/download.jpg';
+  static const String assetsErrorScreen = 'assets/error_screen.riv';
   static const String assetsExpresso = 'assets/expresso.jpg';
   static const String assetsFree = 'assets/free.png';
   static const String assetsGoogle = 'assets/google.png';
