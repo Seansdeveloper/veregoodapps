@@ -77,12 +77,14 @@ class Assets {
   static const String assetsLogo = 'assets/logo.PNG';
   static const String assetsMenu = 'assets/menu.svg';
   static const String assetsMobiles = 'assets/mobiles.png';
+  static const String assetsNointernet = 'assets/nointernet.riv';
   static const String assetsNotification = 'assets/notification.png';
   static const String assetsOffer = 'assets/offer.png';
   static const String assetsOnboardingFirst = 'assets/onboarding_first.gif';
   static const String assetsOrange = 'assets/orange.jpg';
   static const String assetsOrder = 'assets/order.png';
   static const String assetsParking = 'assets/parking.png';
+  static const String assetsPerson = 'assets/person.gif';
   static const String assetsProductitem = 'assets/productitem.png';
   static const String assetsProfile = 'assets/profile.png';
   static const String assetsRefer = 'assets/refer.jpg';

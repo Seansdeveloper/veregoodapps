@@ -27,25 +27,28 @@ class _HomePageState extends State<HomePage> {
       children: <Widget>[
         Container(
           height: 30,
+          padding: const EdgeInsets.only(left: 10),
+
           width: MediaQuery.of(context).size.width,
-          color: const Color.fromRGBO(240, 207, 3, 1),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Row(
-              children: [
-                InkWell(
-                    onTap: () async {
-                      Position position = await Geolocator.getCurrentPosition(
-                          desiredAccuracy: LocationAccuracy.high);
-                      print(position);
-                    },
-                    child: Icon(
-                      Icons.location_on,
-                      color: Colors.black,
-                    )),
-                const Text("India"),
-              ],
-            ),
+          decoration: BoxDecoration(
+              color: const Color.fromRGBO(240, 207, 3, 1),
+            borderRadius: BorderRadius.only(bottomRight: Radius.circular(5),bottomLeft: Radius.circular(5))
+          ),
+
+          child: Row(
+            children: [
+              InkWell(
+                  onTap: () async {
+                    Position position = await Geolocator.getCurrentPosition(
+                        desiredAccuracy: LocationAccuracy.high);
+                    print(position);
+                  },
+                  child: Icon(
+                    Icons.location_on,
+                    color: Colors.black,
+                  )),
+              const Text("India"),
+            ],
           ),
         ),
         Expanded(
@@ -105,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                                               ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
                                         ),
                                       ),
-                                      placeholder: (context, url) => CircularProgressIndicator(),
+                                      placeholder: (context, url) => Center(child: CircularProgressIndicator()),
                                       errorWidget: (context, url, error) => Icon(Icons.error),
                                     ),
                                     onTap: () {}));
@@ -193,84 +196,99 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(fontSize: 22),
           ),
         ),
-        Row(
+        SizedBox(
+          height: 200,
 
-          children: [
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Container(
+                  height: 200,
+                  width: 200,
+                  color: Colors.red,
+                  child: Wrap(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8, right: 8, top: 5),
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              radius: 35,
+                              backgroundColor: Colors.blue,
+                              child: Image.asset(Assets.assetsBodyguard,
+                                  fit: BoxFit.contain),
+                            ),
+                            Text("bodygurad")
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8, right: 8, top: 5),
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              radius: 35,
+                              backgroundColor: Colors.blue,
+                              child: Image.asset(Assets.assetsParking,
+                                  fit: BoxFit.contain),
+                            ),
+                            Text("Rent")
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8, right: 8, top: 5),
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              radius: 35,
+                              backgroundColor: Colors.blue,
+                              child: Image.asset(
+                                Assets.assetsStorage,
+                                fit: BoxFit.scaleDown,
+                              ),
+                            ),
+                            Text("HouseRent")
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8, right: 8, top: 5),
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              radius: 35,
+                              backgroundColor: Colors.blue,
+                              child: Image.asset(Assets.assetsBodyguard),
+                            ),
+                            Text("Pay")
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                  itemCount: 10,
+                    itemBuilder: (context,i){
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Container(
+                      height: 200,
+                      width: 200,
+                      color: Colors.white,
+                      child: Image.asset(Assets.assetsShoeman2),
+                    ),
+                  );
 
-            Container(
-              height: 200,
-              width: 200,
-              color: Colors.red,
-              child: Wrap(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8, right: 8, top: 5),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 35,
-                          backgroundColor: Colors.blue,
-                          child: Image.asset(Assets.assetsBodyguard,
-                              fit: BoxFit.contain),
-                        ),
-                        Text("bodygurad")
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8, right: 8, top: 5),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 35,
-                          backgroundColor: Colors.blue,
-                          child: Image.asset(Assets.assetsParking,
-                              fit: BoxFit.contain),
-                        ),
-                        Text("Rent")
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8, right: 8, top: 5),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 35,
-                          backgroundColor: Colors.blue,
-                          child: Image.asset(
-                            Assets.assetsStorage,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        Text("HouseRent")
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8, right: 8, top: 5),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 35,
-                          backgroundColor: Colors.blue,
-                          child: Image.asset(Assets.assetsBodyguard),
-                        ),
-                        Text("Pay")
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                }),
+              ],
             ),
-            Expanded(
-              child: Container(
-                height: 200,
-                color: Colors.white,
-                child: Image.asset(Assets.assetsShoeman2),
-              ),
-            ),
-          ],
+          ),
         ),
 
       ],
@@ -282,10 +300,10 @@ class _HomePageState extends State<HomePage> {
       future: null,
       builder: (context, snapshot) {
         return Container(
-          height: 450,
+          height:  (MediaQuery.of(context).orientation == Orientation.landscape) ?220:410,
           child: GridView.count(
             physics: NeverScrollableScrollPhysics(),
-            crossAxisCount: 2,
+            crossAxisCount: (MediaQuery.of(context).orientation == Orientation.landscape) ? 4 : 2,
             childAspectRatio: 0.9,
             children: List<Widget>.generate(4, (index) {
               return GridTile(
@@ -371,10 +389,10 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(fontSize: 22),
           ),
           Container(
-              height: 450,
+              height:  (MediaQuery.of(context).orientation == Orientation.landscape)?300:450,
               child: GridView.count(
                   physics: NeverScrollableScrollPhysics(),
-                  crossAxisCount: 2,
+                  crossAxisCount: (MediaQuery.of(context).orientation == Orientation.landscape)?4:2,
                   childAspectRatio: 0.9,
                   children: List<Widget>.generate(4, (index) {
                     return GridTile(

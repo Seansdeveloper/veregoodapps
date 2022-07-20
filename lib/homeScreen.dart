@@ -1,5 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -11,6 +11,7 @@ import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dar
 import 'package:veregoodapps/screens/product_details_page/product_details_page.dart';
 import 'package:veregoodapps/screens/profile_page/profile_page.dart';
 import 'package:veregoodapps/screens/service_page/service_page.dart';
+import 'package:veregoodapps/widget/bottomNavigationbar.dart';
 import 'constant/image.dart';
 import 'controler/landing_page_controller.dart';
 import 'controler/text_controller.dart';
@@ -56,30 +57,32 @@ class _HomeScreenState extends State<HomeScreen> {
               buttonBackgroundColor: Color.fromRGBO(36, 94, 171, 1),
               backgroundColor: Colors.transparent,
               color: Colors.white,
-              height: 60,
+              height: 70,
               index: widget.index,
               key: _bottomNavigationKey,
               items: <Widget>[
                 Image.asset(
                   navBtn[0].imagePath,
-                  color: Colors.red,
-                  scale: 2,
+                  color: landingPageController.tabIndex.value==0?Colors.white:Colors.red,
+                  scale: 1.5,
                 ),
                 Image.asset(
                   navBtn[1].imagePath,
-                  color: Colors.red,
-                  scale: 2,
+                  color:landingPageController.tabIndex.value==1?Colors.white:Colors.red,
+                  scale: 1.5,
                 ),
                 Image.asset(
                   navBtn[2].imagePath,
-                  color: Colors.red,
-                  scale: 2,
+                  color: landingPageController.tabIndex.value==2?Colors.white:Colors.red,
+                  scale: 1.5,
                 ),
                 Image.asset(
                   navBtn[3].imagePath,
-                  color: Colors.red,
-                  scale: 2,
+                  color: landingPageController.tabIndex.value==3?Colors.white:Colors.red,
+                  scale: 1.5,
                 ),
+
+
               ],
               onTap: landingPageController.changeTabIndex,
             ),

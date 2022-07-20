@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
 import '../../constant/string.dart';
 import '../../controler/controller.dart';
@@ -27,6 +31,18 @@ class _UserProfileState extends State<UserProfile> {
 void initState()  {
 
     super.initState();
+  }
+
+  File? image;
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if(image == null) return;
+      final imageTemp = File(image.path);
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch(e) {
+      print('Failed to pick image: $e');
+    }
   }
 
 
@@ -75,15 +91,23 @@ void initState()  {
                               CircleAvatar(
                                 radius: 45,
                                 backgroundColor: Colors.grey,
-                                child: Image.asset(Assets.assetsUser,fit: BoxFit.fill,),
+                                child: Image.asset(
+                                  Assets.assetsPerson,
+                                  fit: BoxFit.cover,
+                                ),
 
                               ),
                               Positioned.fill(child: Align(
                                 alignment: Alignment.bottomRight,
-                                child: CircleAvatar(
-                                  backgroundColor: Colors.white,
-                                  radius: 10,
-                                  child: Icon(Icons.camera_alt,size: 14,color: Colors.black,),
+                                child: InkWell(
+                                  onTap:() {
+                                    pickImage();
+                                  },
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    radius: 10,
+                                    child: Icon(Icons.camera_alt,size: 14,color: Colors.black,),
+                                  ),
                                 ),
                               ))
                             ],

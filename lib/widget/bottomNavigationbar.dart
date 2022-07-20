@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
+import 'NavCustomePainter.dart';
+import 'nav_button.dart';
+
+
+
 typedef _LetIndexPage = bool Function(int value);
 
 class CurvedNavigationBar extends StatefulWidget {
@@ -117,7 +122,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                   color: widget.buttonBackgroundColor ?? widget.color,
                   type: MaterialType.circle,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: _icon,
                   ),
                 ),

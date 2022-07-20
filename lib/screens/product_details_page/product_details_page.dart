@@ -72,16 +72,19 @@ class _ProductDetailsState extends State<ProductDetails> {
         children: [
           Stack(
             children: [
-      CachedNetworkImage(
-      height: 250,
-        width: MediaQuery.of(context).size.width,
-        imageUrl:widget.productList!.image.toString(),
-        progressIndicatorBuilder:
-            (context, url, downloadProgress) => Center(
-            child: CircularProgressIndicator(
-                value: downloadProgress.progress)),
-        errorWidget: (context, url, error) =>
-            Icon(Icons.error),
+      Hero(
+        tag: "HERO",
+        child: CachedNetworkImage(
+        height: 250,
+          width: MediaQuery.of(context).size.width,
+          imageUrl:widget.productList!.image.toString(),
+          progressIndicatorBuilder:
+              (context, url, downloadProgress) => Center(
+              child: CircularProgressIndicator(
+                  value: downloadProgress.progress)),
+          errorWidget: (context, url, error) =>
+              Icon(Icons.error),
+        ),
       ),
               Positioned.fill(
                 child: Padding(
