@@ -16,6 +16,7 @@ import 'controler/landing_page_controller.dart';
 import 'controler/text_controller.dart';
 import 'data/navigation_model.dart';
 import 'generated/assets.dart';
+import 'networking/api_service/api_service.dart';
 
 class HomeScreen extends StatefulWidget {
   dynamic index;
@@ -37,6 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   initState() {
     super.initState();
+
+
     Future<Position> locateUser() async {
       return Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
@@ -83,11 +86,11 @@ class _HomeScreenState extends State<HomeScreen> {
             resizeToAvoidBottomInset: false,
             backgroundColor: const Color.fromRGBO(36, 94, 171, 1),
             appBar:landingPageController.tabIndex.value==0? PreferredSize(
-              preferredSize: Size.fromHeight(80),
+              preferredSize: Size.fromHeight(60),
               child: Padding(
                   padding:
                   const EdgeInsets.only(
-                      top: 30, left: 10, right: 10, bottom: 10),
+                      top: 10, left: 10, right: 10,bottom: 5),
                   child: Row(
                     children: [
                       Expanded(

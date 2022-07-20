@@ -8,7 +8,7 @@ class Strings{
   static const String SLIDER_HEADING_3 = "Connect with Others";
   static const String SLIDER_DESC = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies, erat vitae porta consequat.";
   static List acountList=["My Order","Service Bookings","My Addresses","My WishList","Leads/sales","Help Center","Change Password","LogOut"];
-  static List categories=["fashion","Mobiles","services","Electronics","Home","Appliances","Books","pharmacy","Grocery","essentials"];
+  static List categories=["fashion","Mobiles","services","Electronics","Home","Appliances","Books",];
   static List Service=["fashion","Mobiles","services","Electronics","Home","Appliances","Books","pharmacy","Grocery","essentials"];
   static List ourservice=["Book An Bodygurad","Rent Storage","Rent Space","Rent Parking"];
 }

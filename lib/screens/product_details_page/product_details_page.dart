@@ -1,16 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:veregoodapps/model/product.dart';
 
 import '../../constant/color.dart';
 import '../../constant/image.dart';
 import '../cart_page/cart_page.dart';
 
 class ProductDetails extends StatefulWidget {
-  final String? imageSho;
+  final ProductList? productList;
 
-  ProductDetails(this.imageSho);
+  ProductDetails(this.productList);
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -38,7 +40,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       Get.back();
                     },
                     child: Icon(
-                      Icons.arrow_back,
+                      Icons.arrow_back_ios_new,
                       size: 28,
                     )),
                 Row(
@@ -70,15 +72,17 @@ class _ProductDetailsState extends State<ProductDetails> {
         children: [
           Stack(
             children: [
-              Container(
-                  height: 250,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      color: Color.fromRGBO(228, 228, 228, 0.9),
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(5),
-                          bottomRight: Radius.circular(5))),
-                  child: Image.asset(widget.imageSho!)),
+      CachedNetworkImage(
+      height: 250,
+        width: MediaQuery.of(context).size.width,
+        imageUrl:widget.productList!.image.toString(),
+        progressIndicatorBuilder:
+            (context, url, downloadProgress) => Center(
+            child: CircularProgressIndicator(
+                value: downloadProgress.progress)),
+        errorWidget: (context, url, error) =>
+            Icon(Icons.error),
+      ),
               Positioned.fill(
                 child: Padding(
                   padding: const EdgeInsets.only(right: 10, top: 10),
@@ -139,20 +143,29 @@ class _ProductDetailsState extends State<ProductDetails> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.white),
-                              child: Image.asset(Imagess.imageShoes[index]));
+                              child: CachedNetworkImage(
+                                imageUrl: widget.productList!.image.toString(),
+                                progressIndicatorBuilder:
+                                    (context, url, downloadProgress) => Center(
+                                    child: CircularProgressIndicator(
+                                        value: downloadProgress.progress)),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              ),
+                          );
                         }),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 5, top: 10),
                     child: Text(
-                      "Beats solo wired headphones",
+                      widget.productList!.title.toString(),
                       style: TextStyle(fontSize: 18),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 5, bottom: 5),
                     child: Text(
-                      "\$34.99",
+                      "\$${widget.productList!.price}",
                       style: TextStyle(fontSize: 22),
                     ),
                   ),
@@ -292,7 +305,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     padding:
                         const EdgeInsets.only(bottom: 10, left: 5, right: 5),
                     child: Text(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.  Lorem Ipsum is simply.Lorem Ipsum is simply dummy text of the printing and typesetting industry.  Lorem Ipsum is simply.",
+                     widget.productList!.description.toString(),
                       style: TextStyle(fontSize: 12),
                     ),
                   ),

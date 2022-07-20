@@ -18,6 +18,5 @@ class Imagess{
      Assets.assetsBodyguard,Assets.assetsParking,Assets.assetsStorage,Assets.assetsSpecial];
 
  static List Categoies=[
-   Assets.assetsMobiles,  Assets.assetsShoeman2,  Assets.assetsShoeman3,  Assets.assetsShoeman4,  Assets.assetsShoeman5,  Assets.assetsShoeman6,  Assets.assetsShoeman7,  Assets.assetsShoeman8,  Assets.assetsShoeman8,  Assets.assetsShoeman9,  Assets.assetsShoeman10
- ];
+   Assets.assetsFashion,  Assets.assetsElectronics,  Assets.assetsCommercial,  Assets.assetsEssentials,  Assets.assetsHome,  Assets.assetsService,  Assets.assetsTravel,];
 }

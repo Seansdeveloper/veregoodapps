@@ -21,6 +21,7 @@ class Assets {
   static const String assetsBag8 = 'assets/bag_8.png';
   static const String assetsBag9 = 'assets/bag_9.png';
   static const String assetsBodyguard = 'assets/bodyguard.png';
+  static const String assetsBottomhome = 'assets/bottomhome.png';
   static const String assetsCap1 = 'assets/cap_1.png';
   static const String assetsCap10 = 'assets/cap_10.png';
   static const String assetsCap2 = 'assets/cap_2.png';
@@ -33,9 +34,13 @@ class Assets {
   static const String assetsCap9 = 'assets/cap_9.png';
   static const String assetsCartitem = 'assets/cartitem.png';
   static const String assetsCheck = 'assets/check.json';
+  static const String assetsCommercial = 'assets/commercial.jpg';
   static const String assetsDownload = 'assets/download.jpg';
+  static const String assetsElectronics = 'assets/electronics.jpg';
   static const String assetsErrorScreen = 'assets/error_screen.riv';
+  static const String assetsEssentials = 'assets/Essentials.jpg';
   static const String assetsExpresso = 'assets/expresso.jpg';
+  static const String assetsFashion = 'assets/fashion.jpg';
   static const String assetsFree = 'assets/free.png';
   static const String assetsGoogle = 'assets/google.png';
   static const String assetsHeadphone10 = 'assets/headphone_10.png';
@@ -53,7 +58,7 @@ class Assets {
   static const String assetsHeadphones3 = 'assets/headphones_3.png';
   static const String assetsHeadphones4 = 'assets/headphones_4.png';
   static const String assetsHeart = 'assets/heart.png';
-  static const String assetsHome = 'assets/home.png';
+  static const String assetsHome = 'assets/home.jpg';
   static const String assetsI = 'assets/i.png';
   static const String assetsIcib = 'assets/icib.png';
   static const String assetsJeans1 = 'assets/jeans_1.png';
@@ -93,6 +98,7 @@ class Assets {
   static const String assetsRing9 = 'assets/ring_9.png';
   static const String assetsSearch = 'assets/search.png';
   static const String assetsSenelec = 'assets/senelec.jpg';
+  static const String assetsService = 'assets/service.jpg';
   static const String assetsShoeman1 = 'assets/shoeman_1.png';
   static const String assetsShoeman10 = 'assets/shoeman_10.png';
   static const String assetsShoeman2 = 'assets/shoeman_2.png';
@@ -111,6 +117,7 @@ class Assets {
   static const String assetsT = 'assets/t.png';
   static const String assetsTeamsandcondition = 'assets/teamsandcondition.png';
   static const String assetsTest = 'assets/test.json';
+  static const String assetsTravel = 'assets/travel.jpg';
   static const String assetsUser = 'assets/user.png';
   static const String assetsWishlist = 'assets/wishlist.png';
   static const String assetsWomanshoe1 = 'assets/womanshoe_1.png';

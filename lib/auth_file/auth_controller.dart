@@ -8,6 +8,7 @@ import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dar
 
 import '../controler/controller.dart';
 import '../homeScreen.dart';
+import '../networking/api_service/api_service.dart';
 import '../screens/home_screen/home.dart';
 import '../screens/mobile_authitcation_screen/otp_page.dart';
 
@@ -15,6 +16,7 @@ class AuthController extends GetxController {
   static AuthController instance = Get.find();
   late Rx<User?> firebaseUser;
   late String verifirdId;
+ late String Phone;
 
   late Rx<GoogleSignInAccount?> googleSignInAccount;
 
@@ -41,6 +43,7 @@ class AuthController extends GetxController {
       // if the user is not found then the user is navigated to the Register Screen
       Get.offAll(() => const LoginScreen());
     } else {
+      Get.offAll(()=>HomeScreen(0));
       // if the user exists and logged in the the user is navigated to the Home Screen
     }
   }
@@ -57,17 +60,19 @@ class AuthController extends GetxController {
   }
 
 
+
+
   Future<void> OtpVerified(String otp) async {
 
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verifirdId, smsCode: otp);
       auth.signInWithCredential(credential).then((value) {
-        Get.off(()=>HomeScreen(0));
+        ApiService.createLoginState(Phone);
         print(value.user);
       }).catchError((onError) {
         Get.snackbar(
           "verfication faild",
-          "Please enter the correct OTP",
+          "Oops... somethings is wrong",
           snackPosition: SnackPosition.BOTTOM,
         );
       });
@@ -108,7 +113,7 @@ class AuthController extends GetxController {
 
   void MobileAuthication(String phoneNumber) async {
     try {
-
+      Phone=phoneNumber;
       await auth.verifyPhoneNumber(
           phoneNumber: phoneNumber,
           timeout:  Duration(milliseconds: 10000),
