@@ -1,18 +1,11 @@
 
-
-
-
-
-
-
-
 import 'dart:convert';
 
 import 'package:get/route_manager.dart';
 import 'package:veregoodapps/model/check_user/check_usser.dart';
 import 'package:http/http.dart';
 import 'package:veregoodapps/model/banner/banner.dart';
-
+import 'package:veregoodapps/model/collection/collection.dart';
 import '../../homeScreen.dart';
 import '../../model/CreateProfile.dart';
 import '../../model/product.dart';
@@ -22,9 +15,6 @@ import '../../screens/onborading_screen/onborading_screen.dart';
 
 
 class ApiService{
-
-
-
   static Future<List<headline>> getBanner() async {
     Response response= await get(Uri.parse("http://38.130.130.45:8000/api/veregood/banner/?device=mobile"));
     if(response.statusCode==200){
@@ -56,7 +46,28 @@ static  Future<dynamic> createLoginState(String MobileNumber) async {
 
    }
  }
- static Future<CreateProfile> updatedata(String name,String email,String mobileNumber,String countryCode) async {
+
+
+
+  static Future<List<Collections>> getCollection() async {
+    Response response= await get(Uri.parse("http://38.130.130.45:8000/api/veregood/collection/"));
+    if(response.statusCode==200){
+      final List result=jsonDecode(response.body) ;
+      return result.map(((e) => Collections.fromJson(e))).toList();
+
+    }
+    else
+      throw Exception(response.reasonPhrase);
+  }
+
+
+
+
+
+
+
+
+ static Future<CreateProfile> updatedata(String name,String email,String mobileNumber) async {
    final Response response = await post(
        Uri.parse( 'http://38.130.130.45:8000/api/veregood/register/'),
      headers: <String, String>{
@@ -65,8 +76,8 @@ static  Future<dynamic> createLoginState(String MobileNumber) async {
      body: jsonEncode(<String, String>{
        'name': name,
        'email': email,
-       'mobileNumber': mobileNumber,
-       'countryCode': countryCode,
+       'username': mobileNumber,
+       'country_code':"+91",
      }),
    );
 
@@ -74,6 +85,12 @@ static  Future<dynamic> createLoginState(String MobileNumber) async {
      Get.to(()=>SliderLayoutView());
      return CreateProfile.fromJson(json.decode(response.body));
    } else {
+     Get.snackbar(
+
+       "updated faild",
+       "Oops... somethings is wrong",
+       snackPosition: SnackPosition.BOTTOM,
+     );
      throw Exception('Failed to update profile.');
    }
  }

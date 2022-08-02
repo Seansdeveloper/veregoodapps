@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:veregoodapps/screens/no_internet_Scrren/no_internet_connetion.dart';
 
 import '../../constant/color.dart';
 import '../../constant/image.dart';
 import '../../generated/assets.dart';
+import '../../networking/service/location_service.dart';
+import '../error_screens/error_screen.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -37,8 +42,10 @@ class _CartPageState extends State<CartPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.arrow_back,size: 25,),
-                      Icon(Icons.search,size: 25,),
+                      InkWell(
+                         onTap:(){ Get.back();},
+                          child: Icon(Icons.arrow_back,size: 25,color: Colors.white,)),
+                      Icon(Icons.search,size: 25,color: Colors.white,),
                     ],
                   ),
                   SizedBox(height: 10,),
@@ -53,12 +60,24 @@ class _CartPageState extends State<CartPage> {
 body: TabBarView(
   children: <Widget>[
     MyCartPage(),
-       Column(
-        children: <Widget>[new Text("Cart Page")],
+       SingleChildScrollView(
+         child: Column(
+          children: <Widget>[
+            ErrorScreen(),
+
+            Text("NO DATA FOUND",style: TextStyle(fontSize: 28),)
+          ],
       ),
-     Column(
-      children: <Widget>[new Text("Wishlist")],
-    )
+       ),
+    SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          ErrorScreen(),
+
+          Text("NO DATA FOUND",style: TextStyle(fontSize: 28),)
+        ],
+      ),
+    ),
   ],
 ),
       ),
@@ -80,17 +99,23 @@ body: TabBarView(
             padding: const EdgeInsets.only(left: 10),
             child: Row(
               children: [
-                InkWell(
-                    onTap: () async {
-                      Position position = await Geolocator.getCurrentPosition(
-                          desiredAccuracy: LocationAccuracy.high);
-                      print(position);
-                    },
-                    child: Icon(
-                      Icons.location_on,
-                      color: Colors.black,
-                    )),
-                const Text("India"),
+                Icon(
+                  Icons.location_on,
+                  color: Colors.black,
+                ),
+                FutureBuilder<String>(
+                    future: CurrentLocation.currentPosition(),
+                    builder: (context, snapshot) {
+                      if(snapshot.hasError){
+                        Text("please provide the location");
+                      }
+                      else if(snapshot.hasData){
+                        return Text(snapshot.data!);
+                      }
+                      return Text("Loading....");
+                    }
+
+                ),
               ],
             ),
           ),
@@ -114,67 +139,83 @@ body: TabBarView(
                     Flexible(child: Image.asset(i, fit: BoxFit.fill,width: 120,height: 120,)),
                     Flexible(
                       flex: 2,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                           Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                             children: [
-                               Text("Beats shoes with Lether",style: TextStyle(color: Colors.black,)),
-                               Icon(Icons.delete,color: Colors.black,)
-                             ],
-                           ),
-                          Text("product features..",style: TextStyle(color: Colors.black.withOpacity(0.5),fontSize: 13)),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 5),
-                            child: Text("in stock",style: TextStyle(color: Colors.green,fontSize: 14,)),
-                          ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 2,left: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                             Row(
+                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                               children: [
+                                 Text("Beats shoes with Lether",style: TextStyle(color: Colors.black,)),
+                                 Icon(Icons.delete,color: Colors.black,)
+                               ],
+                             ),
+                            Text("product features..",style: TextStyle(color: Colors.black.withOpacity(0.5),fontSize: 13)),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 5,top: 5),
+                              child: Text("in stock",style: TextStyle(color: Colors.green,fontSize: 14,)),
+                            ),
 
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap:(){
-                                      value--;
-                                    },
-                                    child: Container(
-                                      height: 25,
-                                      width: 25,
-                                        margin: EdgeInsets.only(right: 10),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(width: 0.5,color: Colors.black.withOpacity(0.5))
-                                      ),
-                                     child:Icon(Icons.remove,color: Colors.black,size: 12,)
-                                    ),
-                                  ),
-                                  Text("$value",style: TextStyle(color: Colors.black,)),
-                                  GestureDetector(
-                                    onTap:(){
-                                      value--;
-                                    },
-                                    child: Container(
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    GestureDetector(
+                                      onTap:(){
+                                        setState(() {
+                                          if(value!=0)
+                                            {
+                                              value--;
+                                            }
+
+                                        });
+
+                                      },
+                                      child: Container(
                                         height: 25,
                                         width: 25,
-                                        margin: EdgeInsets.symmetric(horizontal: 10),
+                                          margin: EdgeInsets.only(right: 10),
                                         decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(8),
-                                            border: Border.all(width: 0.5,color: Colors.black.withOpacity(0.5))
+                                          borderRadius: BorderRadius.circular(8),
+                                          border: Border.all(width: 0.5,color: Colors.black.withOpacity(0.5))
                                         ),
-                                        child:Icon(Icons.add,color: Colors.black,size: 12,)
+                                       child:Icon(Icons.remove,color: Colors.black,size: 12,)
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Text("\$34.99" ,style: TextStyle(fontSize: 18,color: Colors.black),)
+                                    Text("$value",style: TextStyle(color: Colors.black,)),
+                                    GestureDetector(
+                                      onTap:(){
+                                        setState(() {
+                                          if(value>=0)
+                                          {
+                                            value++;
+                                          }
+
+                                        });
+                                      },
+                                      child: Container(
+                                          height: 25,
+                                          width: 25,
+                                          margin: EdgeInsets.symmetric(horizontal: 10),
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(8),
+                                              border: Border.all(width: 0.5,color: Colors.black.withOpacity(0.5))
+                                          ),
+                                          child:Icon(Icons.add,color: Colors.blue,size: 15,)
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text("\$34.99" ,style: TextStyle(fontSize: 18,color: Colors.black),)
 
 
-                            ],
-                          )
+                              ],
+                            )
 
-                        ],
+                          ],
+                        ),
                       ),
                     )
 

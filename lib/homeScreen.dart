@@ -7,17 +7,11 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:veregoodapps/screens/cart_page/cart_page.dart';
 import 'package:veregoodapps/screens/explore_screen/ExploreScreen.dart';
 import 'package:veregoodapps/screens/home_screen/home.dart';
-import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
-import 'package:veregoodapps/screens/product_details_page/product_details_page.dart';
-import 'package:veregoodapps/screens/profile_page/profile_page.dart';
+import 'package:veregoodapps/screens/profile_page/user_profile.dart';
 import 'package:veregoodapps/screens/service_page/service_page.dart';
 import 'package:veregoodapps/widget/bottomNavigationbar.dart';
-import 'constant/image.dart';
 import 'controler/landing_page_controller.dart';
-import 'controler/text_controller.dart';
 import 'data/navigation_model.dart';
-import 'generated/assets.dart';
-import 'networking/api_service/api_service.dart';
 
 class HomeScreen extends StatefulWidget {
   dynamic index;
@@ -30,7 +24,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   ScrollController _controller = ScrollController();
-  late Position position;
   int selectBtn = 0;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final LandingPageController landingPageController =
@@ -39,12 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   initState() {
     super.initState();
-
-
-    Future<Position> locateUser() async {
-      return Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-    }
   }
 
   @override
@@ -63,22 +50,22 @@ class _HomeScreenState extends State<HomeScreen> {
               items: <Widget>[
                 Image.asset(
                   navBtn[0].imagePath,
-                  color: landingPageController.tabIndex.value==0?Colors.white:Colors.red,
+                  color: landingPageController.tabIndex.value==0?Colors.white:null,
                   scale: 1.5,
                 ),
                 Image.asset(
                   navBtn[1].imagePath,
-                  color:landingPageController.tabIndex.value==1?Colors.white:Colors.red,
+                  color:landingPageController.tabIndex.value==1?Colors.white:null,
                   scale: 1.5,
                 ),
                 Image.asset(
                   navBtn[2].imagePath,
-                  color: landingPageController.tabIndex.value==2?Colors.white:Colors.red,
+                  color: landingPageController.tabIndex.value==2?Colors.white:null,
                   scale: 1.5,
                 ),
                 Image.asset(
                   navBtn[3].imagePath,
-                  color: landingPageController.tabIndex.value==3?Colors.white:Colors.red,
+                  color: landingPageController.tabIndex.value==3?Colors.white:null,
                   scale: 1.5,
                 ),
 
@@ -136,6 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Icon(
                             Icons.shopping_cart,
                             size: 25,
+                            color: Colors.white,
                           ))
                     ],
                   )),
@@ -144,9 +132,9 @@ class _HomeScreenState extends State<HomeScreen> {
               index: landingPageController.tabIndex.value,
               children: [
                 HomePage(),
+                UserProfile(),
                 ExploreScreen(),
                 ServicePage(),
-                UserProfile(),
               ],
             ),
           );

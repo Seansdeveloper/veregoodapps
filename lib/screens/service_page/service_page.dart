@@ -74,7 +74,7 @@ class _ServicePageState extends State<ServicePage> {
                   return GestureDetector(
                     onTap: (){
 
-                      Get.to(()=>ProductDetails(snapshot.data![index]));
+                      Get.to(duration: Duration(milliseconds: 700),()=>ProductDetails(snapshot.data![index],index));
 
 
                     },
@@ -94,7 +94,7 @@ class _ServicePageState extends State<ServicePage> {
                           Align(
                             alignment: Alignment.topCenter,
                             child: Hero(
-                              tag: "HERO",
+                              tag: "HERO"+[index].toString(),
                               child: CachedNetworkImage(
                                 height: 100,
                                 imageUrl: snapshot.data![index].image.toString(),

@@ -1,11 +1,5 @@
 
 
-
-
-
-
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
@@ -14,8 +8,8 @@ import '../../generated/assets.dart';
 
 
 
-class ErrorScreen extends StatelessWidget {
-  const ErrorScreen({Key? key}) : super(key: key);
+class ErrorScreens extends StatelessWidget {
+  const ErrorScreens({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

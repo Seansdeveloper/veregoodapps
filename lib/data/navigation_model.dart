@@ -13,8 +13,8 @@ class Model {
 }
 
 List<Model> navBtn = [
-  Model(id: 0, imagePath: Assets.assetsBottomhome, name: 'Home'),
-  Model(id: 1, imagePath:Assets.assetsSearch, name: 'Search'),
-  Model(id: 2, imagePath: Assets.assetsHeart, name: 'Like'),
-  Model(id: 3, imagePath: Assets.assetsUser, name: 'Profile'),
+  Model(id: 0, imagePath: Assets.veregoodappsAssetsHome, name: 'Home'),
+  Model(id: 1, imagePath:Assets.assetsProfile, name: 'Search'),
+  Model(id: 2, imagePath: Assets.assetsExplore, name: 'Like'),
+  Model(id: 3, imagePath: Assets.assetsSetting, name: 'Profile'),
 ];

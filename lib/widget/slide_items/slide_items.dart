@@ -35,6 +35,7 @@ class SlideItem extends StatelessWidget {
             fontWeight: FontWeight.w700,
             fontSize: 20.5,
           ),
+          textAlign: TextAlign.center,
         ),
         SizedBox(
           height: 15.0,

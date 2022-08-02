@@ -20,6 +20,7 @@ class Assets {
   static const String assetsBag7 = 'assets/bag_7.png';
   static const String assetsBag8 = 'assets/bag_8.png';
   static const String assetsBag9 = 'assets/bag_9.png';
+  static const String assetsBody = 'assets/body.png';
   static const String assetsBodyguard = 'assets/bodyguard.png';
   static const String assetsBottomhome = 'assets/bottomhome.png';
   static const String assetsCap1 = 'assets/cap_1.png';
@@ -32,6 +33,7 @@ class Assets {
   static const String assetsCap7 = 'assets/cap_7.png';
   static const String assetsCap8 = 'assets/cap_8.png';
   static const String assetsCap9 = 'assets/cap_9.png';
+  static const String assetsCart = 'assets/cart.png';
   static const String assetsCartitem = 'assets/cartitem.png';
   static const String assetsCheck = 'assets/check.json';
   static const String assetsCommercial = 'assets/commercial.jpg';
@@ -39,9 +41,11 @@ class Assets {
   static const String assetsElectronics = 'assets/electronics.jpg';
   static const String assetsErrorScreen = 'assets/error_screen.riv';
   static const String assetsEssentials = 'assets/Essentials.jpg';
+  static const String assetsExplore = 'assets/explore.png';
   static const String assetsExpresso = 'assets/expresso.jpg';
   static const String assetsFashion = 'assets/fashion.jpg';
   static const String assetsFree = 'assets/free.png';
+  static const String assetsGoodiepay = 'assets/goodiepay.png';
   static const String assetsGoogle = 'assets/google.png';
   static const String assetsHeadphone10 = 'assets/headphone_10.png';
   static const String assetsHeadphone11 = 'assets/headphone_11.png';
@@ -61,6 +65,9 @@ class Assets {
   static const String assetsHome = 'assets/home.jpg';
   static const String assetsI = 'assets/i.png';
   static const String assetsIcib = 'assets/icib.png';
+  static const String assetsImageonborading = 'assets/imageonborading.gif';
+  static const String assetsImageonborading2 = 'assets/imageonborading2.gif';
+  static const String assetsImageonborading3 = 'assets/imageonborading3.gif';
   static const String assetsJeans1 = 'assets/jeans_1.png';
   static const String assetsJeans10 = 'assets/jeans_10.png';
   static const String assetsJeans2 = 'assets/jeans_2.png';
@@ -73,8 +80,6 @@ class Assets {
   static const String assetsJeans9 = 'assets/jeans_9.png';
   static const String assetsLanguage = 'assets/language.png';
   static const String assetsLatest = 'assets/latest.json';
-  static const String assetsLive = 'assets/live.gif';
-  static const String assetsLogo = 'assets/logo.PNG';
   static const String assetsMenu = 'assets/menu.svg';
   static const String assetsMobiles = 'assets/mobiles.png';
   static const String assetsNointernet = 'assets/nointernet.riv';
@@ -88,6 +93,7 @@ class Assets {
   static const String assetsProductitem = 'assets/productitem.png';
   static const String assetsProfile = 'assets/profile.png';
   static const String assetsRefer = 'assets/refer.jpg';
+  static const String assetsRent = 'assets/rent.png';
   static const String assetsRing1 = 'assets/ring_1.png';
   static const String assetsRing10 = 'assets/ring_10.png';
   static const String assetsRing2 = 'assets/ring_2.png';
@@ -101,6 +107,7 @@ class Assets {
   static const String assetsSearch = 'assets/search.png';
   static const String assetsSenelec = 'assets/senelec.jpg';
   static const String assetsService = 'assets/service.jpg';
+  static const String assetsSetting = 'assets/setting.png';
   static const String assetsShoeman1 = 'assets/shoeman_1.png';
   static const String assetsShoeman10 = 'assets/shoeman_10.png';
   static const String assetsShoeman2 = 'assets/shoeman_2.png';
@@ -134,5 +141,6 @@ class Assets {
   static const String assetsWomanshoe9 = 'assets/womanshoe_9.png';
   static const String assetsWoyofal = 'assets/woyofal.png';
   static const String assetsYouth = 'assets/youth.jpg';
+  static const String veregoodappsAssetsHome = 'assets/home.png';
 
 }

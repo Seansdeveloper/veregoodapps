@@ -17,16 +17,16 @@ class Slider {
 
 final sliderArrayList = [
   Slider(
-      sliderImageUrl: Assets.assetsOnboardingFirst,
+      sliderImageUrl: Assets.assetsImageonborading,
       sliderHeading: Strings.SLIDER_HEADING_1,
       sliderSubHeading: Strings.SLIDER_DESC),
   Slider(
-      sliderImageUrl: 'assets/images/slider_2.png',
+      sliderImageUrl: Assets.assetsImageonborading2,
       sliderHeading: Strings.SLIDER_HEADING_2,
-      sliderSubHeading: Strings.SLIDER_DESC),
+      sliderSubHeading: Strings.SLIDER_DESC_1),
   Slider(
-      sliderImageUrl: 'assets/images/slider_3.png',
+      sliderImageUrl: Assets.assetsImageonborading3,
       sliderHeading: Strings.SLIDER_HEADING_3,
-      sliderSubHeading: Strings.SLIDER_DESC),
+      sliderSubHeading: Strings.SLIDER_DESC_2),
 ];
 

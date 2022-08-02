@@ -29,7 +29,7 @@ class ErrorScreen extends StatelessWidget {
             height: 500,
             child: RiveAnimation.asset(Assets.assetsErrorScreen,),
           ),
-          Text("Oops... somethings is wrong",style: TextStyle(fontSize: 22),)
+          Text("NO DATA FOUND",style: TextStyle(fontSize: 22),)
         ],
       ),
     );

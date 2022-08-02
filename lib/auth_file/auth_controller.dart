@@ -5,12 +5,11 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:veregoodapps/screens/mobile_authitcation_screen/login.dart';
 import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
-
 import '../controler/controller.dart';
 import '../homeScreen.dart';
 import '../networking/api_service/api_service.dart';
-import '../screens/home_screen/home.dart';
 import '../screens/mobile_authitcation_screen/otp_page.dart';
+import '../screens/splash_screen.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
@@ -23,28 +22,22 @@ class AuthController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    // auth is comning from the constants.dart file but it is basically FirebaseAuth.instance.
+    // auth is coming from the constants.dart file but it is basically FirebaseAuth.instance.
     // Since we have to use that many times I just made a constant file and declared there
 
     firebaseUser = Rx<User?>(auth.currentUser);
     googleSignInAccount = Rx<GoogleSignInAccount?>(googleSign.currentUser);
-
-
     firebaseUser.bindStream(auth.userChanges());
     ever(firebaseUser, _setInitialScreen);
-
-
     googleSignInAccount.bindStream(googleSign.onCurrentUserChanged);
     ever(googleSignInAccount, _setInitialScreenGoogle);
   }
 
   _setInitialScreen(User? user) {
     if (user == null) {
-      // if the user is not found then the user is navigated to the Register Screen
-      Get.offAll(() => const LoginScreen());
+      Get.offAll(() =>  SplashScreen());
     } else {
       Get.offAll(()=>HomeScreen(0));
-      // if the user exists and logged in the the user is navigated to the Home Screen
     }
   }
 
@@ -76,8 +69,6 @@ class AuthController extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
         );
       });
-
-
   }
 
 
@@ -85,15 +76,12 @@ class AuthController extends GetxController {
   void signInWithGoogle() async {
     try {
       GoogleSignInAccount? googleSignInAccount = await googleSign.signIn();
-
       if (googleSignInAccount != null) {
         GoogleSignInAuthentication googleSignInAuthentication =
         await googleSignInAccount.authentication;
-
         AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
           idToken: googleSignInAuthentication.idToken,
-
         );
 
         await auth
@@ -117,7 +105,6 @@ class AuthController extends GetxController {
       await auth.verifyPhoneNumber(
           phoneNumber: phoneNumber,
           timeout:  Duration(milliseconds: 10000),
-
           codeSent:
               (String verificationId, int? forceResendingToken) {
                 verifirdId = verificationId;
@@ -147,7 +134,6 @@ class AuthController extends GetxController {
         e.toString(),
         snackPosition: SnackPosition.BOTTOM,
       );
-
     }
   }
 
@@ -176,11 +162,17 @@ class AuthController extends GetxController {
     } catch (firebaseAuthException) {}
   }
 
+
+
+
   void login(String email, password) async {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
     } catch (firebaseAuthException) {}
   }
+
+
+
 
   void signOut() async {
     await auth.signOut();

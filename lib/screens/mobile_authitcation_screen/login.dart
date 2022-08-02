@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
@@ -16,6 +15,7 @@ import '../../controler/text_controller.dart';
 import '../../generated/assets.dart';
 import '../../responsive/responsive.dart';
 import '../home_screen/home.dart';
+import '../onborading_screen/onborading_screen.dart';
 import 'otp_page.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -51,20 +51,21 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
   String currentText = "";
   final controller = Get.put(TextController());
   final controllers = Get.find<TextController>();
-  bool _flag=false;
+  bool _flag = false;
 
   late Animation<double> _myAnimation;
   late AnimationController _controller;
-  final List locale =[
-    {'name':'ENGLISH','locale': Locale('en','US')},
-    {'name':'日本','locale': Locale('ja','JP')},
-    {'name':'한국어','locale': Locale('ko','KR')},
-    {'name':'français','locale': Locale('fr','FR')},
+  final List locale = [
+    {'name': 'ENGLISH', 'locale': Locale('en', 'US')},
+    {'name': '日本', 'locale': Locale('ja', 'JP')},
+    {'name': '한국어', 'locale': Locale('ko', 'KR')},
+    {'name': 'français', 'locale': Locale('fr', 'FR')},
   ];
-  updateLanguage(Locale locale){
+  updateLanguage(Locale locale) {
     Get.back();
     Get.updateLocale(locale);
   }
+
   @override
   void initState() {
     errorController = StreamController<ErrorAnimationType>();
@@ -81,62 +82,67 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Color.fromRGBO(36, 94, 171, 1),
-      // bottomNavigationBar: RichText(
-      //   textAlign: TextAlign.center,
-      //   text: TextSpan(
-      //       style: TextStyle(
-      //         color: Theme.of(context).textTheme.bodyText1?.color,
-      //       ),
-      //       children: [
-      //         TextSpan(
-      //             text: 'Powered by'.tr,
-      //             style: const TextStyle(fontWeight: FontWeight.bold)),
-      //         TextSpan(
-      //             text: 'saurav singh'.tr,
-      //             style: const TextStyle(fontWeight: FontWeight.bold))
-      //       ]),
-      // ),
       body: Stack(
         children: [
-          Positioned.fill(child: Align(alignment: Alignment.topCenter, child: Container(
-            margin: EdgeInsets.only(left: 10, right: 10, top: 90
+          Positioned.fill(
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                margin: EdgeInsets.only(left: 10, right: 10, top: 90),
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(
+                      240,
+                      207,
+                      3,
+                      1,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+              ),
             ),
-            decoration: BoxDecoration(color: Color.fromRGBO(240, 207, 3, 1,),borderRadius: BorderRadius.all(Radius.circular(20))),
-          ),),),
+          ),
           Container(
             margin: const EdgeInsets.only(top: 100),
-            padding: const EdgeInsets.only(left: 20,right: 20,top:10),
-            decoration:  BoxDecoration(
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15)),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15), topRight: Radius.circular(15)),
               color: Theme.of(context).backgroundColor,
             ),
-            child: ListView(
-              // crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Align(
-                  alignment: Alignment.topRight,
-                  child:SizedBox(
-                    width: 40,
-                    child: InkWell(
-                      onTap: () {
-                        buildLanguageDialog(context);
-                      },
-                      child:  Image.asset(Assets.assetsLanguage,),
-                      // Lottie.asset(Assets.assetsCheck, controller: _controller,
-                      //   onLoaded: (composition) {
-                      //     // Configure the AnimationController with the duration of the
-                      //     // Lottie file and start the animation.
-                      //     _controller
-                      //       ..duration = composition.duration
-                      //       ..forward();
-                      //   },),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                        onTap: () {
+                          Get.to(() => HomeScreen(0));
+                        },
+                        child: Text("Skip".tr)),
+                    SizedBox(
+                      width: 40,
+                      child: InkWell(
+                        onTap: () {
+                          buildLanguageDialog(context);
+                        },
+                        child: Image.asset(
+                          Assets.assetsLanguage,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
                 const SizedBox(
                   height: 5,
                 ),
-                Image.asset(Assets.assetsAppicon,height: 150,width: 150,),
+                Align(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    Assets.assetsAppicon,
+                    height: 200,
+                    width: 200,
+                  ),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -145,14 +151,6 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                   style: TextStyle(
                       fontSize: 26.0,
                       letterSpacing: 0.7,
-                      fontWeight: FontWeight.w700,
-                      color: Theme.of(context).textTheme.bodyText1!.color),
-                ),
-                Text(
-                  "MOBILE".tr,
-                  style: TextStyle(
-                      letterSpacing: 0.7,
-                      fontSize: 20,
                       color: Theme.of(context).textTheme.bodyText1!.color),
                 ),
                 Padding(
@@ -161,132 +159,56 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                     controller: controller.textController,
                     keyboardType: TextInputType.number,
                     showDropdownIcon: false,
-                    focusNode: FocusNode(),
+
                     // controller: text,
                     flagsButtonMargin: const EdgeInsets.only(left: 5, right: 2),
                     decoration: InputDecoration(
                       labelText: 'Phone Number'.tr,
+                      hintText: "Enter the phone Number",
+                      hintStyle: Theme.of(context).textTheme.bodyText1,
+                      fillColor: Color(0xffF5F5F5),
+                        filled: true,
                       labelStyle: Theme.of(context).textTheme.bodyText1,
-                      border: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white, width: 2),
+                      border:  OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xffF5F5F5), width: 0),
+                        borderRadius: BorderRadius.circular(14),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Theme.of(context).cardColor, width: 2),
+                            color: Color(0xffF5F5F5), width: 0),
+                          borderRadius: BorderRadius.circular(14)
                       ),
+                      focusedBorder:OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color(0xffF5F5F5), width: 0),
+                          borderRadius: BorderRadius.circular(14)
+                      ),
+                      focusColor: Color(0xffF5F5F5),
                     ),
                     onChanged: (phone) {
-                      currentText=phone.completeNumber;
+                      currentText = phone.completeNumber;
                     },
                     onCountryChanged: (country) {
-
-                        print('Country changed to: ${country.name}');
+                      print('Country changed to: ${country.name}');
                     },
                   ),
                 ),
-                // Form(
-                //   child: Padding(
-                //       padding: const EdgeInsets.only(top: 20),
-                //       child: PinCodeTextField(
-                //         appContext: context,
-                //         pastedTextStyle: TextStyle(
-                //           color: Colors.green.shade600,
-                //           fontWeight: FontWeight.bold,
-                //         ),
-                //         length: 6,
-                //         animationType: AnimationType.fade,
-                //         validator: (v) {
-                //           if (v!.length < 3) {
-                //             return "Enter Otp".tr;
-                //           } else {
-                //             return null;
-                //           }
-                //         },
-                //         pinTheme: PinTheme(
-                //             shape: PinCodeFieldShape.box,
-                //             borderRadius: BorderRadius.circular(5),
-                //             borderWidth: 2,
-                //             fieldHeight: 50,
-                //             fieldWidth: 50,
-                //             activeFillColor:
-                //                 Theme.of(context).bottomAppBarColor,
-                //             activeColor: Theme.of(context).cardColor,
-                //             inactiveFillColor:
-                //                 Theme.of(context).bottomAppBarColor,
-                //             inactiveColor: Theme.of(context).cardColor,
-                //             selectedColor: Theme.of(context).cardColor,
-                //             selectedFillColor:
-                //                 Theme.of(context).bottomAppBarColor),
-                //         cursorColor: Theme.of(context).cardColor,
-                //         animationDuration: const Duration(milliseconds: 300),
-                //         enableActiveFill: true,
-                //         errorAnimationController: errorController,
-                //         // controller: otp,
-                //         keyboardType: TextInputType.number,
-                //         boxShadows: [
-                //           BoxShadow(
-                //             offset: const Offset(0, -1),
-                //             color: Colors.white.withOpacity(0.5),
-                //             blurRadius: 1,
-                //           )
-                //         ],
-                //         onCompleted: (v) {
-                //           debugPrint("Completed");
-                //         },
-                //         // onTap: () {
-                //         //   print("Pressed");
-                //         // },
-                //         onChanged: (value) {
-                //           debugPrint(value);
-                //           setState(() {
-                //             currentText = value;
-                //           });
-                //         },
-                //         beforeTextPaste: (text) {
-                //           debugPrint("Allowing to paste $text");
-                //           //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                //           //but you can show anything you want here, like your pop up saying wrong paste format or etc
-                //           return true;
-                //         },
-                //       )),
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.only(top: 5),
-                //   child: Align(
-                //     alignment: Alignment.topRight,
-                //     child: InkWell(
-                //       onTap: () {
-                //         Get.snackbar('OTP'.tr, 'Otp Resend'.tr,
-                //             colorText:
-                //                 Theme.of(context).textTheme.bodyText1!.color,
-                //             snackPosition: SnackPosition.BOTTOM);
-                //       },
-                //       child: Text(
-                //         "RESEND".tr,
-                //         style: const TextStyle(
-                //             color: Color(0xFF91D3B3),
-                //             fontWeight: FontWeight.bold,
-                //             fontSize: 16),
-                //       ),
-                //     ),
-                //   ),
-                // ),
+
                 Padding(
                   padding: const EdgeInsets.only(top: 30, bottom: 30),
                   child: Center(
                     child: ElevatedButton(
                         onPressed: () {
-                          if(currentText.isNotEmpty){
+                          if (currentText.isNotEmpty) {
                             authController.MobileAuthication(currentText);
-                          }
-                         else{
+                          } else {
                             Get.snackbar(
                               "Alert",
                               "Please enter the phone number",
                               snackPosition: SnackPosition.BOTTOM,
                             );
                           }
-                       //   Get.to(() => OtpPage());
+                          //   Get.to(() => OtpPage());
                         },
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromRGBO(36, 94, 171, 1),
@@ -298,24 +220,24 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                         child: Text(
                           "Send Otp".tr,
                           style: TextStyle(
-                              fontSize: 25,
-                              ),
-                          )),
+                            fontSize: 25,
+                          ),
+                        )),
                   ),
                 ),
-
+                Spacer(),
                 Divider(
                   thickness: 1,
-                  color: Colors.black,
+                  color: Color(0xffE7E7E7)
                 ),
+
                 Padding(
-                  padding: const EdgeInsets.only(top: 40,left: 30,right:30 ),
+                  padding: const EdgeInsets.only(top: 40,bottom: 30),
                   child: InkWell(
                     onTap: () {
-                      authController.signInWithGoogle();
+                      // authController.signInWithGoogle();
                     },
                     child: Container(
-
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
@@ -335,8 +257,7 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                               child: Text(
                                 "Google Sign In".tr,
                                 style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18),
+                                    color: Colors.black, fontSize: 18),
                               ),
                             ),
                           ),
@@ -353,34 +274,40 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
     );
   }
 
-  buildLanguageDialog(BuildContext context){
-    Get.generalDialog(pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation,) {
+  buildLanguageDialog(BuildContext context) {
+    Get.generalDialog(pageBuilder: (
+      BuildContext context,
+      Animation<double> animation,
+      Animation<double> secondaryAnimation,
+    ) {
       return AlertDialog(
         title: Text('Choose Your Language'.tr),
         content: Container(
           width: double.maxFinite,
           child: ListView.separated(
               shrinkWrap: true,
-              itemBuilder: (context,index){
+              itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(5.0),
-                  child: GestureDetector(child: Text(locale[index]['name']),onTap: (){
+                  child: GestureDetector(
+                    child: Text(locale[index]['name']),
+                    onTap: () {
+                      print(locale[index]['name']);
+                      updateLanguage(locale[index]['locale']);
 
-                    print(locale[index]['name']);
-                    updateLanguage(locale[index]['locale']);
-
-                    _flag=false;
-                  },),
+                      _flag = false;
+                    },
+                  ),
                 );
-              }, separatorBuilder: (context,index){
-            return const Divider(
-              color: Colors.blue,
-            );
-          }, itemCount: locale.length
-          ),
+              },
+              separatorBuilder: (context, index) {
+                return const Divider(
+                  color: Colors.blue,
+                );
+              },
+              itemCount: locale.length),
         ),
       );
-
     });
   }
 }

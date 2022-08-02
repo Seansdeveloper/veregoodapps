@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
               Expanded(
                 child: Opacity(
                     opacity: opacity.value,
-                    child: new Image.asset(Assets.assetsApplogo)),
+                    child: new Image.asset(Assets.assetsAppicon)),
               ),
               Center(
                 child: RichText(

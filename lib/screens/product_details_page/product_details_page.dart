@@ -11,8 +11,9 @@ import '../cart_page/cart_page.dart';
 
 class ProductDetails extends StatefulWidget {
   final ProductList? productList;
+  final int? index;
 
-  ProductDetails(this.productList);
+  ProductDetails(this.productList,  this.index);
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -73,7 +74,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           Stack(
             children: [
       Hero(
-        tag: "HERO",
+        tag: "HERO"+[widget.index].toString(),
         child: CachedNetworkImage(
         height: 250,
           width: MediaQuery.of(context).size.width,
@@ -146,14 +147,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: Colors.white),
-                              child: CachedNetworkImage(
-                                imageUrl: widget.productList!.image.toString(),
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) => Center(
-                                    child: CircularProgressIndicator(
-                                        value: downloadProgress.progress)),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: CachedNetworkImage(
+                                  imageUrl: widget.productList!.image.toString(),
+                                  progressIndicatorBuilder:
+                                      (context, url, downloadProgress) => Center(
+                                      child: CircularProgressIndicator(
+                                          value: downloadProgress.progress)),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ),
                               ),
                           );
                         }),

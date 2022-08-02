@@ -2,16 +2,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
+import 'package:permission_handler/permission_handler.dart';
+import 'package:veregoodapps/screens/no_internet_Scrren/no_internet_connetion.dart';
 import '../../constant/image.dart';
 import '../../constant/string.dart';
 import '../../generated/assets.dart';
 import '../../model/banner/banner.dart';
+import '../../model/collection/collection.dart';
 import '../../networking/api_service/api_service.dart';
-import '../product_details_page/product_details_page.dart';
+import '../../networking/service/location_service.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,6 +23,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+
+  @override
+ void initState()  {
+    super.initState();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,19 +48,26 @@ class _HomePageState extends State<HomePage> {
 
           child: Row(
             children: [
-              InkWell(
-                  onTap: () async {
-                    Position position = await Geolocator.getCurrentPosition(
-                        desiredAccuracy: LocationAccuracy.high);
-                    print(position);
-                  },
-                  child: Icon(
-                    Icons.location_on,
-                    color: Colors.black,
-                  )),
-              const Text("India"),
+              Icon(
+                Icons.location_on,
+                color: Colors.black,
+              ),
+              FutureBuilder<String>(
+                 future: CurrentLocation.currentPosition(),
+                 builder: (context, snapshot) {
+                   if(snapshot.hasError){
+                     Text("please provide the location");
+                   }
+                   else if(snapshot.hasData){
+                     return Text(snapshot.data!);
+                   }
+                   return Text("Loading....");
+                 }
+
+               ),
             ],
           ),
+
         ),
         Expanded(
           child: Container(
@@ -206,7 +224,6 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   height: 200,
                   width: 200,
-                  color: Colors.red,
                   child: Wrap(
                     children: [
                       Padding(
@@ -224,13 +241,13 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8, right: 8, top: 5),
+                        padding: const EdgeInsets.only(left: 14, right: 6, top: 5),
                         child: Column(
                           children: [
                             CircleAvatar(
                               radius: 35,
                               backgroundColor: Colors.blue,
-                              child: Image.asset(Assets.assetsParking,
+                              child: Image.asset(Assets.assetsSpace,
                                   fit: BoxFit.contain),
                             ),
                             Text("Rent")
@@ -245,7 +262,7 @@ class _HomePageState extends State<HomePage> {
                               radius: 35,
                               backgroundColor: Colors.blue,
                               child: Image.asset(
-                                Assets.assetsStorage,
+                                Assets.assetsRent,
                                 fit: BoxFit.scaleDown,
                               ),
                             ),
@@ -254,15 +271,15 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8, right: 8, top: 5),
+                        padding: const EdgeInsets.only(left: 14, right: 6, top: 5),
                         child: Column(
                           children: [
                             CircleAvatar(
                               radius: 35,
                               backgroundColor: Colors.blue,
-                              child: Image.asset(Assets.assetsBodyguard),
+                              child: Image.asset(Assets.assetsGoodiepay),
                             ),
-                            Text("Pay")
+                            Text("Goodiepay")
                           ],
                         ),
                       )
@@ -280,8 +297,19 @@ class _HomePageState extends State<HomePage> {
                     child: Container(
                       height: 200,
                       width: 200,
-                      color: Colors.white,
-                      child: Image.asset(Assets.assetsShoeman2),
+                      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                      ),
+
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(Assets.assetsRent),
+                          Text("Enjoy renting services if you need any help you can enjoy you",style: TextStyle(color: Colors.black),)
+                        ],
+                      ),
                     ),
                   );
 
@@ -296,20 +324,21 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget bestSeller() {
-    return FutureBuilder<Object>(
+    return FutureBuilder<List<Collections>>(
       future: null,
       builder: (context, snapshot) {
+
         return Container(
-          height:  (MediaQuery.of(context).orientation == Orientation.landscape) ?220:410,
+          height:  (MediaQuery.of(context).orientation == Orientation.landscape) ?220:450,
           child: GridView.count(
             physics: NeverScrollableScrollPhysics(),
             crossAxisCount: (MediaQuery.of(context).orientation == Orientation.landscape) ? 4 : 2,
-            childAspectRatio: 0.9,
+            childAspectRatio: 0.8,
             children: List<Widget>.generate(4, (index) {
               return GridTile(
                 child: InkWell(
                   onTap: () {
-                    Get.to(() => ProductDetails(Imagess.imageShoes[index]));
+                    // Get.to(() => ProductDetails(s));
                   },
                   child: Card(
                       color: Colors.blue.shade200,
@@ -324,11 +353,11 @@ class _HomePageState extends State<HomePage> {
                               alignment: Alignment.center,
                             ),
                             Text(
-                              "Shoe Collection",
+                              Strings.product[index],
                               style: TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.bold),
                             ),
-                            Text("Sports wear", style: TextStyle(fontSize: 15))
+                            Text("vvcvachsvcvascvuguciusacaivcsuvivc", style: TextStyle(fontSize: 15))
                           ],
                         ),
                       )),
@@ -337,6 +366,13 @@ class _HomePageState extends State<HomePage> {
             }),
           ),
         );
+        // if(snapshot.hasData){
+        //
+        // }
+        // else if(snapshot.hasError){
+        //   return ErrorScreen();
+        // }
+        // return CircularProgressIndicator();
       }
     );
   }
@@ -393,7 +429,7 @@ class _HomePageState extends State<HomePage> {
               child: GridView.count(
                   physics: NeverScrollableScrollPhysics(),
                   crossAxisCount: (MediaQuery.of(context).orientation == Orientation.landscape)?4:2,
-                  childAspectRatio: 0.9,
+                   childAspectRatio: 0.9,
                   children: List<Widget>.generate(4, (index) {
                     return GridTile(
                       child: Card(
@@ -405,7 +441,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     );
-                  })))
+                  }))),
         ],
       ),
     );

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:veregoodapps/homeScreen.dart';
 
+import '../../constant/color.dart';
 import '../../constant/string.dart';
 import '../../model/slider.dart';
 import '../../widget/slide_dot.dart';
@@ -41,87 +42,108 @@ class _SliderLayoutViewState extends State<SliderLayoutView> {
 
   _onPageChanged(int index) {
     setState(() {
-      _currentPage = index;
+       _currentPage=index;
     });
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(body: topSliderLayout());
-
-  Widget topSliderLayout() => Container(
+  Widget build(BuildContext context) => Scaffold(body:  Container(
     child: Padding(
         padding: EdgeInsets.all(10.0),
         child: Stack(
           alignment: AlignmentDirectional.bottomCenter,
           children: <Widget>[
             PageView.builder(
-              scrollDirection: Axis.horizontal,
-              controller: _pageController,
-              onPageChanged: _onPageChanged,
-              itemCount: sliderArrayList.length,
-              itemBuilder: (ctx, i) => SlideItem(i),
+
+                scrollDirection: Axis.horizontal,
+                controller: _pageController,
+                onPageChanged: _onPageChanged,
+                itemCount: sliderArrayList.length,
+                itemBuilder: (ctx, i){
+
+                  return SlideItem(i);
+
+                }
             ),
             Stack(
               alignment: AlignmentDirectional.topStart,
               children: <Widget>[
-               GestureDetector(
-                 onTap: () {
-                   setState(() {
+                GestureDetector(
+                  onTap: () {
+                    Get.offAll(()=>HomeScreen(0));
 
-                   });
-                 },
-                 child: const Align(
-                    alignment: Alignment.bottomRight,
+                  },
+                  child: const Align(
+                    alignment: Alignment.topRight,
                     child: Padding(
-                      padding: EdgeInsets.only(right: 15.0, bottom: 15.0),
-                      child: Text(
-                        Strings.NEXT,
-                        style: TextStyle(
-                          fontFamily: Strings.OPEN_SANS,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14.0,
-                        ),
-                      ),
-                    ),
-                  ),
-               ),
-              GestureDetector(
-                onTap: (){
-                  Get.offAll(()=>HomeScreen(0));
-
-                },
-                child:   const Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 15.0, bottom: 15.0),
+                      padding: EdgeInsets.only(right: 15.0, bottom: 15.0,top: 80,),
                       child: Text(
                         Strings.SKIP,
+
                         style: TextStyle(
                           fontFamily: Strings.OPEN_SANS,
                           fontWeight: FontWeight.w600,
-                          fontSize: 14.0,
+                          fontSize: 18.0,
                         ),
                       ),
                     ),
                   ),
-              ),
-                Container(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  margin: EdgeInsets.only(bottom: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      for (int i = 0; i < sliderArrayList.length; i++)
-                        if (i == _currentPage)
-                          SlideDots(true)
-                        else
-                          SlideDots(false)
-                    ],
+                ),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 20.0,left: 15),
+                    child: Row(
+                      children: <Widget>[
+                        for (int i = 0; i < sliderArrayList.length; i++)
+                          if (i == _currentPage)
+                            SlideDots(true)
+                          else
+                            SlideDots(false)
+                      ],
+                    ),
                   ),
                 ),
+                GestureDetector(
+                  onTap: (){
+                    if(_currentPage==0||_currentPage==1){
+                      setState(() {
+                        _currentPage++;
+                      });
+                      _pageController.animateToPage(_currentPage, duration: Duration(milliseconds: 500), curve: Curves.ease);
+                    }
+                    else
+                      {
+                        Get.offAll(()=>HomeScreen(0));
+                      }
+                    },
+
+                  child:    Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 15.0, bottom: 15.0,right: 15.0),
+                      child: CircleAvatar(
+                        radius: 30,
+                        backgroundColor: appbar,
+                        child: Text(
+                          _currentPage==2? "Start":Strings.NEXT,
+                          style: TextStyle(
+                            fontFamily: Strings.OPEN_SANS,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            fontSize: 14.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
               ],
             )
           ],
         )),
-  );
+  ));
+
+
 }
