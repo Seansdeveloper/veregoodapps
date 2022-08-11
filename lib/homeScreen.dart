@@ -1,15 +1,17 @@
 import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:veregoodapps/screens/cart_page/cart_page.dart';
+import 'package:veregoodapps/screens/category_skills.dart';
 import 'package:veregoodapps/screens/explore_screen/ExploreScreen.dart';
 import 'package:veregoodapps/screens/home_screen/home.dart';
+import 'package:veregoodapps/screens/mobile_authitcation_screen/login.dart';
 import 'package:veregoodapps/screens/profile_page/user_profile.dart';
-import 'package:veregoodapps/screens/service_page/service_page.dart';
 import 'package:veregoodapps/widget/bottomNavigationbar.dart';
+import 'controler/controller.dart';
 import 'controler/landing_page_controller.dart';
 import 'data/navigation_model.dart';
 
@@ -44,39 +46,37 @@ class _HomeScreenState extends State<HomeScreen> {
               buttonBackgroundColor: Color.fromRGBO(36, 94, 171, 1),
               backgroundColor: Colors.transparent,
               color: Colors.white,
-              height: 70,
+              height: 60,
               index: widget.index,
               key: _bottomNavigationKey,
               items: <Widget>[
                 Image.asset(
                   navBtn[0].imagePath,
                   color: landingPageController.tabIndex.value==0?Colors.white:null,
-                  scale: 1.5,
+                  scale: 2.5,
                 ),
                 Image.asset(
                   navBtn[1].imagePath,
                   color:landingPageController.tabIndex.value==1?Colors.white:null,
-                  scale: 1.5,
+                  scale: 2.5,
                 ),
                 Image.asset(
                   navBtn[2].imagePath,
                   color: landingPageController.tabIndex.value==2?Colors.white:null,
-                  scale: 1.5,
+                  scale: 2.5,
                 ),
                 Image.asset(
                   navBtn[3].imagePath,
                   color: landingPageController.tabIndex.value==3?Colors.white:null,
-                  scale: 1.5,
+                  scale: 2.5,
                 ),
-
-
               ],
               onTap: landingPageController.changeTabIndex,
             ),
             resizeToAvoidBottomInset: false,
             backgroundColor: const Color.fromRGBO(36, 94, 171, 1),
-            appBar:landingPageController.tabIndex.value==0? PreferredSize(
-              preferredSize: Size.fromHeight(60),
+            appBar:landingPageController.tabIndex.value==0?PreferredSize(
+              preferredSize: Size.fromHeight(65),
               child: Padding(
                   padding:
                   const EdgeInsets.only(
@@ -118,11 +118,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       GestureDetector(
                           onTap: () {
-                            Get.to(() => CartPage());
+                            if (auth.currentUser == null) {
+                              Get.to(() => LoginScreen());
+                            }
+                            else{
+                              Get.to(() => CartPage());
+                            }
                           },
                           child: Icon(
                             Icons.shopping_cart,
-                            size: 25,
+                            size: 30,
                             color: Colors.white,
                           ))
                     ],
@@ -134,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 HomePage(),
                 UserProfile(),
                 ExploreScreen(),
-                ServicePage(),
+                Category(),
               ],
             ),
           );

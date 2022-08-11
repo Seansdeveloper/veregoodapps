@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 
 import '../../constant/image.dart';
+import '../constant_ui/appbar.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({Key? key}) : super(key: key);
@@ -25,25 +26,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       child:  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 60,
-            width: MediaQuery.of(context).size.width,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 15,right: 5,left: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Explore",style: TextStyle(fontSize: 22),),
-                  Row(children: [
-                    Icon(Icons.search,size: 30,),
-                    SizedBox(width: 10,),
-                    Icon(Icons.shopping_cart,size: 30,)
-                  ],)
-                ],
-              ),
-            ),
-          ),
+          Appbar("Explore"),
           TabBar(
             tabs: [ Text("New In",style: TextStyle(fontSize: 18),),  Text("Popular",style: TextStyle(fontSize: 18))],
           ),
@@ -52,7 +35,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               color: Theme.of(context).backgroundColor,
               child: TabBarView(
                 children: <Widget>[
-                  Gridview(),
+                  Center(child: Text("NO FILE FOUND",style: TextStyle(fontSize: 25),)),
                  Center(child: Text("NO FILE FOUND",style: TextStyle(fontSize: 25),)),
                 ],
               ),

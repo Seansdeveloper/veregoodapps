@@ -1,22 +1,14 @@
 import 'dart:async';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:veregoodapps/homeScreen.dart';
-import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
-
 import '../../controler/controller.dart';
 import '../../controler/text_controller.dart';
 import '../../generated/assets.dart';
 import '../../responsive/responsive.dart';
-import '../home_screen/home.dart';
-import '../onborading_screen/onborading_screen.dart';
-import 'otp_page.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -30,7 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return const Responsive(
       mobile: MobileLoginScreen(),
-      desktop: MobileLoginScreen(),
+      desktop: Center(child: Text("this app is not available for dextop")),
+      tablet: Center(child: Text("this app is not available for tablet")),
     );
   }
 }
@@ -112,24 +105,14 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     GestureDetector(
                         onTap: () {
                           Get.to(() => HomeScreen(0));
                         },
-                        child: Text("Skip".tr)),
-                    SizedBox(
-                      width: 40,
-                      child: InkWell(
-                        onTap: () {
-                          buildLanguageDialog(context);
-                        },
-                        child: Image.asset(
-                          Assets.assetsLanguage,
-                        ),
-                      ),
-                    ),
+                        child: Icon(Icons.close)),
+
                   ],
                 ),
                 const SizedBox(
@@ -139,8 +122,8 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                   alignment: Alignment.center,
                   child: Image.asset(
                     Assets.assetsAppicon,
-                    height: 200,
-                    width: 200,
+                    height: 150,
+                    width: 150,
                   ),
                 ),
                 const SizedBox(
@@ -149,7 +132,7 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                 Text(
                   "Login".tr,
                   style: TextStyle(
-                      fontSize: 26.0,
+                      fontSize: 22.0,
                       letterSpacing: 0.7,
                       color: Theme.of(context).textTheme.bodyText1!.color),
                 ),
@@ -214,8 +197,8 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                           primary: const Color.fromRGBO(36, 94, 171, 1),
                           elevation: 3,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(32.0)),
-                          minimumSize: const Size(240, 50), //////// HERE
+                              borderRadius: BorderRadius.circular(10.0)),
+                          minimumSize: const Size(205, 56), //////// HERE
                         ),
                         child: Text(
                           "Send Otp".tr,
@@ -240,8 +223,15 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                     child: Container(
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(14),
                         color: Color.fromRGBO(245, 245, 245, 1),
+                        boxShadow: [
+                        BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(1.0, 1.0), //(x,y)
+                        blurRadius: 6.0,
+                      ),
+                      ],
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -310,4 +300,20 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
       );
     });
   }
+
+
+Widget customerReview(){
+    return Column(
+      children: [
+        Text("Top reviews",style:TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+
+      ],
+    );
+
+}
+
+
+
+
+
 }

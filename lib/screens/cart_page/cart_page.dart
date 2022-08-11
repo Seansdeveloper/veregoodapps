@@ -59,25 +59,11 @@ class _CartPageState extends State<CartPage> {
         ),
 body: TabBarView(
   children: <Widget>[
-    MyCartPage(),
-       SingleChildScrollView(
-         child: Column(
-          children: <Widget>[
-            ErrorScreen(),
+    // MyCartPage(),
+    Center(child: Text("NO DATA FOUND",style: TextStyle(fontSize: 28),)),
+    Center(child: Text("NO DATA FOUND",style: TextStyle(fontSize: 28),)),
+    Center(child: Text("NO DATA FOUND",style: TextStyle(fontSize: 28),))
 
-            Text("NO DATA FOUND",style: TextStyle(fontSize: 28),)
-          ],
-      ),
-       ),
-    SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          ErrorScreen(),
-
-          Text("NO DATA FOUND",style: TextStyle(fontSize: 28),)
-        ],
-      ),
-    ),
   ],
 ),
       ),

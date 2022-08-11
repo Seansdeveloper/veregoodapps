@@ -8,13 +8,20 @@ import 'package:veregoodapps/model/banner/banner.dart';
 import 'package:veregoodapps/model/collection/collection.dart';
 import '../../homeScreen.dart';
 import '../../model/CreateProfile.dart';
+import '../../model/category/category.dart';
+import '../../model/category/category_product_list.dart';
+import '../../model/category/sub_category.dart';
 import '../../model/product.dart';
+import '../../model/product_list/product_list.dart';
 import '../../screens/mobile_authitcation_screen/profile_page.dart';
 import '../../screens/onborading_screen/onborading_screen.dart';
 
 
 
 class ApiService{
+
+
+
   static Future<List<headline>> getBanner() async {
     Response response= await get(Uri.parse("http://38.130.130.45:8000/api/veregood/banner/?device=mobile"));
     if(response.statusCode==200){
@@ -36,6 +43,9 @@ class ApiService{
    else
      throw Exception(response.reasonPhrase);
  }
+
+
+
 static  Future<dynamic> createLoginState(String MobileNumber) async {
   Response response= await get(Uri.parse("http://38.130.130.45:8000/api/veregood/check-user/?mobile_number="+MobileNumber));
   if (response.statusCode == 200) {
@@ -97,4 +107,142 @@ static  Future<dynamic> createLoginState(String MobileNumber) async {
 
 
 
- }
+  static Future<List<ProductData>> getData(String data) async {
+    try {
+      final Response response = await post(
+        Uri.parse('http://38.130.130.45:8000/api/veregood/collection/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'id': data,
+
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final List result = jsonDecode(response.body);
+        return result.map((e) => ProductData.fromJson(e)).toList();
+      }
+    }
+    catch(e, stacktrace){
+      print(stacktrace.toString());
+    }
+    throw Exception('Failed to update profile.');
+  }
+
+
+
+
+  /// this will return
+
+
+
+
+
+
+
+/// data return sub category
+  static Future<List<SubCategory>> getCategoryData(String data) async {
+    Response response= await get(Uri.parse("http://38.130.130.45:8000/api/veregood/collection/?id="+data));
+    if(response.statusCode==200){
+      final List result=jsonDecode(response.body) ;
+      return result.map(((e) => SubCategory.fromJson(e))).toList();
+
+    }
+    else
+      throw Exception(response.reasonPhrase);
+  }
+
+
+
+  static Future<List<Category>> getListCategory() async {
+    try {
+      final Response response = await put(
+        Uri.parse('http://38.130.130.45:8000/api/veregood/category/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+        }),
+
+
+      );
+
+      if (response.statusCode == 200) {
+        final List result = jsonDecode(response.body);
+        return result.map((e) => Category.fromJson(e)).toList();
+      }
+    }
+    catch(e, stacktrace){
+      print(stacktrace.toString());
+    }
+    throw Exception('Failed to update profile.');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+   /// this api return category data
+  static Future<List<CategoryProductList>> getCategory(String data) async {
+    try {
+      final Response response = await post(
+        Uri.parse('http://38.130.130.45:8000/api/veregood/category/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, dynamic>{
+          'id': data,
+
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // Map<String, dynamic> data = new Map<String, dynamic>.from(json.decode(response.body));
+        final List result = jsonDecode(response.body);
+        return result.map((e) => CategoryProductList.fromJson(e)).toList();
+      }
+    }
+    catch(e, stacktrace){
+      print(stacktrace.toString());
+    }
+    throw Exception('Failed to update profile.');
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

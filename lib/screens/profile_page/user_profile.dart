@@ -12,6 +12,7 @@ import '../../constant/string.dart';
 import '../../controler/controller.dart';
 import '../../generated/assets.dart';
 import '../../widget/list_view.dart';
+import '../constant_ui/appbar.dart';
 
 
 class UserProfile extends StatefulWidget {
@@ -51,25 +52,7 @@ void initState()  {
     return Column(
     mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        SizedBox(
-          height: 60,
-          width: MediaQuery.of(context).size.width,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 15,right: 5,left: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("MyAccount",style: TextStyle(fontSize: 22),),
-                Row(children: [
-                  Icon(Icons.search,size: 30,),
-                  SizedBox(width: 10,),
-                  Icon(Icons.shopping_cart,size: 30,)
-                ],)
-              ],
-            ),
-          ),
-        ),
+        Appbar("MyAccount"),
         Expanded(
           child: Container(
             height: MediaQuery.of(context).size.height,
@@ -168,6 +151,7 @@ void initState()  {
 
                   InkWell(
                     onTap: (){
+                     // Condition();
                       if (kDebugMode) {
                         print("FAQ'S");
 
@@ -180,6 +164,7 @@ void initState()  {
                   ),
                   InkWell(
                     onTap: (){
+                      // Condition();
                       if (kDebugMode) {
                         print("ABOUT US");
 
@@ -190,7 +175,10 @@ void initState()  {
                     ),
                   ),
                   InkWell(
-                    onTap: (){  if (kDebugMode) {
+                    onTap: (){
+                      // Condition();
+
+                      if (kDebugMode) {
                       print("TEAMS & CONDITION");
 
                     }
@@ -202,6 +190,7 @@ void initState()  {
                     ),
                   InkWell(
                     onTap: (){
+                      // Condition();
                       if (kDebugMode) {
                         print("PRIVACY POLICY");
 

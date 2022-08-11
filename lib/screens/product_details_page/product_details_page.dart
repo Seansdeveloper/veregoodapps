@@ -3,8 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:veregoodapps/controler/controller.dart';
 import 'package:veregoodapps/model/product.dart';
-
+import 'package:veregoodapps/screens/mobile_authitcation_screen/login.dart';
+import '../../networking/service/location_service.dart';
 import '../../constant/color.dart';
 import '../../constant/image.dart';
 import '../cart_page/cart_page.dart';
@@ -13,7 +15,7 @@ class ProductDetails extends StatefulWidget {
   final ProductList? productList;
   final int? index;
 
-  ProductDetails(this.productList,  this.index);
+  ProductDetails(this.productList, this.index);
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -43,23 +45,26 @@ class _ProductDetailsState extends State<ProductDetails> {
                     child: Icon(
                       Icons.arrow_back_ios_new,
                       size: 28,
+                      color: Colors.white,
                     )),
                 Row(
                   children: [
                     Icon(
                       Icons.search,
                       size: 22,
+                      color: Colors.white,
                     ),
                     SizedBox(
                       width: 10,
                     ),
                     GestureDetector(
-                      onTap: (){
-                        Get.to(()=>CartPage());
+                      onTap: () {
+                        Get.to(() => CartPage());
                       },
                       child: Icon(
                         Icons.shopping_cart,
                         size: 22,
+                        color: Colors.white,
                       ),
                     ),
                   ],
@@ -73,20 +78,19 @@ class _ProductDetailsState extends State<ProductDetails> {
         children: [
           Stack(
             children: [
-      Hero(
-        tag: "HERO"+[widget.index].toString(),
-        child: CachedNetworkImage(
-        height: 250,
-          width: MediaQuery.of(context).size.width,
-          imageUrl:widget.productList!.image.toString(),
-          progressIndicatorBuilder:
-              (context, url, downloadProgress) => Center(
-              child: CircularProgressIndicator(
-                  value: downloadProgress.progress)),
-          errorWidget: (context, url, error) =>
-              Icon(Icons.error),
-        ),
-      ),
+              Hero(
+                tag: "HERO" + [widget.index].toString(),
+                child: CachedNetworkImage(
+                  height: 250,
+                  width: MediaQuery.of(context).size.width,
+                  imageUrl: widget.productList!.image.toString(),
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      Center(
+                          child: CircularProgressIndicator(
+                              value: downloadProgress.progress)),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+              ),
               Positioned.fill(
                 child: Padding(
                   padding: const EdgeInsets.only(right: 10, top: 10),
@@ -141,24 +145,24 @@ class _ProductDetailsState extends State<ProductDetails> {
                         itemCount: Imagess.imageShoes.length,
                         itemBuilder: (context, index) {
                           return Container(
-                              width: 100,
-                              height: 100,
-                              margin: EdgeInsets.only(left: 10),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white),
-                              child: ClipRRect(
+                            width: 100,
+                            height: 100,
+                            margin: EdgeInsets.only(left: 10),
+                            decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                child: CachedNetworkImage(
-                                  imageUrl: widget.productList!.image.toString(),
-                                  progressIndicatorBuilder:
-                                      (context, url, downloadProgress) => Center(
-                                      child: CircularProgressIndicator(
-                                          value: downloadProgress.progress)),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
-                                ),
+                                color: Colors.white),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: CachedNetworkImage(
+                                imageUrl: widget.productList!.image.toString(),
+                                progressIndicatorBuilder:
+                                    (context, url, downloadProgress) => Center(
+                                        child: CircularProgressIndicator(
+                                            value: downloadProgress.progress)),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
                               ),
+                            ),
                           );
                         }),
                   ),
@@ -312,7 +316,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     padding:
                         const EdgeInsets.only(bottom: 10, left: 5, right: 5),
                     child: Text(
-                     widget.productList!.description.toString(),
+                      widget.productList!.description.toString(),
                       style: TextStyle(fontSize: 12),
                     ),
                   ),
@@ -321,23 +325,42 @@ class _ProductDetailsState extends State<ProductDetails> {
                     color: Color.fromRGBO(231, 231, 231, 1),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 5, right: 5),
-                    child: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                              text: 'Deliver To : ',
-                              style: TextStyle(fontSize: 16)),
-                          TextSpan(
-                              text:
-                                  'Lorem Ipsum is simply dummy text of the printing and type.',
-                              style: TextStyle(fontSize: 12)),
-                        ],
-                      ),
-                    ),
+                    padding: const EdgeInsets.only(left: 5, right: 5),
+                    child: FutureBuilder<String>(
+                        future: CurrentLocation.currentPosition(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            Text("please provide the location");
+                          } else if (snapshot.hasData) {
+                            return Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                      text: 'Deliver To : ',
+                                      style: TextStyle(fontSize: 16)),
+                                  TextSpan(
+                                      text:
+                                          snapshot.data,
+                                      style: TextStyle(fontSize: 12)),
+                                ],
+                              ),
+                            );
+                          }
+                          return Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                    text: 'Deliver To : ',
+                                    style: TextStyle(fontSize: 16)),
+                                TextSpan(
+                                    text:
+                                        'Loading...',
+                                    style: TextStyle(fontSize: 12)),
+                              ],
+                            ),
+                          );
+                        }),
                   ),
-
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
@@ -349,7 +372,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                           color: Theme.of(context).backgroundColor,
                           boxShadow: [
                             BoxShadow(
-                              color: Theme.of(context).cardColor.withOpacity(0.5),
+                              color:
+                                  Theme.of(context).cardColor.withOpacity(0.5),
                               offset: Offset(1.0, 1.0), //(x,y)
                               blurRadius: 1.0,
                             ),
@@ -358,64 +382,64 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 10,bottom: 5),
+                    padding: const EdgeInsets.only(top: 10, bottom: 5),
                     child: Divider(
                       thickness: 2.5,
                       color: Color.fromRGBO(231, 231, 231, 1),
                     ),
                   ),
-               Padding(
-                 padding: const EdgeInsets.only(
-                     left: 5, right: 5,bottom: 5),
-                 child: Row(
-                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   children: [
-                     Text(
-                       "Similar Product",
-                       style: TextStyle(fontSize: 20),
-                     ),
-                     Text(
-                       "See all",
-                       style: TextStyle(fontSize: 12),
-                     )
-                 ],),
-               ),
-
-               Padding(
-                 padding: const EdgeInsets.only(
-                     left: 5, right: 5,bottom: 10),
-                 child: SizedBox(
-                   height: 200,
-                   child: ListView.builder(
-                     scrollDirection: Axis.horizontal,
-                     itemCount: 7,
-                       itemBuilder: (context,i){
-                     return Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       children: [
-                         Container(
-                           height: 150,
-                         width: 140,
-                          margin: EdgeInsets.only(right: 10),
-                          color: Colors.white,
-                          child: Image.asset(Imagess.imageCap[i],height: 120,width: 120,)
-                         ),
-                         Text(
-                           "Product Name",
-                           style: TextStyle(fontSize: 16),
-                         ),
-                         Text(
-                           "\$100",
-                           style: TextStyle(fontSize: 17),
-                         ),
-                       ],
-                     );
-                   }),
-                 ),
-               )
-
-
-
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5, right: 5, bottom: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Similar Product",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Text(
+                          "See all",
+                          style: TextStyle(fontSize: 12),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 5, right: 5, bottom: 10),
+                    child: SizedBox(
+                      height: 200,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 7,
+                          itemBuilder: (context, i) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                    height: 150,
+                                    width: 140,
+                                    margin: EdgeInsets.only(right: 10),
+                                    color: Colors.white,
+                                    child: Image.asset(
+                                      Imagess.imageCap[i],
+                                      height: 120,
+                                      width: 120,
+                                    )),
+                                Text(
+                                  "Product Name",
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                Text(
+                                  "\$100",
+                                  style: TextStyle(fontSize: 17),
+                                ),
+                              ],
+                            );
+                          }),
+                    ),
+                  )
                 ],
               ),
             ),
@@ -425,28 +449,44 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
 
-  bottomNavigationBar(){
+  bottomNavigationBar() {
     return Row(
       children: [
-        Container(
-          height: 50,
-          width: MediaQuery.of(context).size.width/2,
-          color: Colors.red,
-          padding: EdgeInsets.all(10),
-          child: FittedBox(child: Text("Add to Cart")),
+        GestureDetector(
+          onTap: () {
+            if (auth.currentUser == null) {
+              Get.to(() => LoginScreen());
+            }
+            else{
+              Get.to(() => CartPage());
+            }
+          },
+          child: Container(
+            height: 50,
+            width: MediaQuery.of(context).size.width / 2,
+            color: Colors.red,
+            padding: EdgeInsets.all(10),
+            child: FittedBox(child: Text("Add to Cart")),
+          ),
         ),
-        Container(
-          height: 50,
-          width: MediaQuery.of(context).size.width/2,
-          color: appbar,
-          padding: EdgeInsets.all(10),
-          child: FittedBox(child: Text("Buy Now")),
+        GestureDetector(
+          onTap: () {
+            if (auth.currentUser == null) {
+              Get.to(() => LoginScreen());
+            }
+            else{
+              Get.to(() => CartPage());
+            }
+          },
+          child: Container(
+            height: 50,
+            width: MediaQuery.of(context).size.width / 2,
+            color: appbar,
+            padding: EdgeInsets.all(10),
+            child: FittedBox(child: Text("Buy Now")),
+          ),
         )
       ],
     );
   }
-
-
-
-
 }

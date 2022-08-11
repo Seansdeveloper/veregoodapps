@@ -245,6 +245,7 @@ class MapScreenState extends State<ProfilePage>
                           hintText: "Date of birth ".tr,
                           fillColor: Color(0xffF5F5F5),
                           filled: true,
+
                           border: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Color(0xffF5F5F5), width: 0),

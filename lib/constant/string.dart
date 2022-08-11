@@ -14,4 +14,13 @@ class Strings{
   static List Service=["fashion","Mobiles","services","Electronics","Home","Appliances","Books","pharmacy","Grocery","essentials"];
   static List ourservice=["Book An Bodygurad","Rent Storage","Rent Space","Rent Parking"];
   static List product=["cap","fgtes","jcasn","sbshacb"];
+  static List fashion=["Man","Woman","Kids","Baby","Sport","Beauty"];
+  static List Electronics=["Games","Computer","Music","Film & Series"];
+  static List Commercial=["Large appliances","Office products","Automative","Industria supply"];
+  static List Home=["Books","Kitchen","Furniture","Garden","Klussen"];
+  static List Essentials=["Grocery","Health","Personal"];
+  static List Travel=["Luggage","Accessories"];
+
+
+
 }

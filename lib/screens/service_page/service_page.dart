@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:veregoodapps/networking/api_service/api_service.dart';
-
 import '../../constant/color.dart';
-
+import '../../controler/controller.dart';
 import '../../model/product.dart';
-import '../../model/product.dart';
+import '../cart_page/cart_page.dart';
 import '../error_screens/error_screen.dart';
+import '../mobile_authitcation_screen/login.dart';
 import '../product_details_page/product_details_page.dart';
+
+
 
 class ServicePage extends StatefulWidget {
   const ServicePage({Key? key}) : super(key: key);
@@ -24,41 +26,48 @@ class _ServicePageState extends State<ServicePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).backgroundColor,
-      child: Column(
-        children: [
-          Container(
-            height: 60,
-            width: MediaQuery.of(context).size.width,
-            color: appbar,
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Text(
-                    "Category name",
-                    style: TextStyle(fontSize: 18),
-                  ),
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          color: Theme.of(context).backgroundColor,
+          child: Column(
+            children: [
+              Container(
+                height: 60,
+                width: MediaQuery.of(context).size.width,
+                color: appbar,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        "Category name",
+                        style: TextStyle(fontSize: 18,  color: Colors.white,),
+                      ),
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.search_rounded,
+                      size: 22,
+                      color: Colors.white,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8),
+                      child: Icon(
+                        Icons.shopping_cart,
+                        size: 22,
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
                 ),
-                Spacer(),
-                Icon(
-                  Icons.search_rounded,
-                  size: 22,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8),
-                  child: Icon(
-                    Icons.shopping_cart,
-                    size: 22,
-                  ),
-                )
-              ],
-            ),
+              ),
+              Expanded(child: cardPage()),
+            ],
           ),
-          Expanded(child: cardPage()),
-        ],
-      ),
+        ),
+
+      )
     );
   }
 
@@ -155,7 +164,15 @@ class _ServicePageState extends State<ServicePage> {
                                 ),
 
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                if (auth.currentUser == null) {
+                                  Get.to(() => LoginScreen());
+                                }
+                                else{
+                                  Get.to(() => CartPage());
+                                }
+
+                              },
                               child: Text('Buy'),
                             ),
                           )

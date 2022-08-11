@@ -9,6 +9,7 @@ class Collections {
   Collections(
       {this.id, this.title, this.slug, this.icon, this.image, this.isActive});
 
+
   Collections.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];

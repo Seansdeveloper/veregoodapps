@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   void navigationPage() {
-   Get.off(()=>LoginScreen());
+   Get.off(()=>HomeScreen(0));
   }
 
   Widget build(BuildContext context) {
