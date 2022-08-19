@@ -2,15 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:veregoodapps/screens/no_internet_Scrren/no_internet_connetion.dart';
+
 import '../../constant/image.dart';
 import '../../constant/string.dart';
 import '../../generated/assets.dart';
 import '../../model/banner/banner.dart';
+import '../../model/category/category.dart';
 import '../../model/collection/collection.dart';
 import '../../model/product_list/product_list.dart';
 import '../../networking/api_service/api_service.dart';
@@ -75,23 +72,27 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(
                     height: 100,
-                    child: FutureBuilder<Object>(
-                      future: ApiService.getCategory("4"),
+                    child: FutureBuilder<List<Category>>(
+                      future: ApiService.getListCategory(),
                       builder: (context, snapshot) {
                         if(snapshot.hasError){
-
+                             Text("something is wrong");
                         }
-                        return ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: Strings.categories.length,
-                            itemBuilder: (context, i) {
-                              return GestureDetector(
-                                  onTap: (){
+                        else if(snapshot.hasData){
+                          return  ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: Strings.categories.length,
+                                itemBuilder: (context, i) {
+                                  return GestureDetector(
+                                      onTap: (){
 
 
-                                  },
-                                  child: categories(Strings.categories[i], Imagess.Categoies[i]));
-                            });
+                                      },
+                                      child: categories(snapshot.data![i].name.toString(), snapshot.data![i].image.toString()));
+                                });
+                        }
+                        return CircularProgressIndicator();
+
                       }
                     ),
                   ),

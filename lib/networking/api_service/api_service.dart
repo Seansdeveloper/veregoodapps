@@ -92,6 +92,7 @@ static  Future<dynamic> createLoginState(String MobileNumber) async {
    );
 
    if (response.statusCode == 200) {
+
      Get.to(()=>SliderLayoutView());
      return CreateProfile.fromJson(json.decode(response.body));
    } else {
@@ -170,6 +171,7 @@ static  Future<dynamic> createLoginState(String MobileNumber) async {
       );
 
       if (response.statusCode == 200) {
+
         final List result = jsonDecode(response.body);
         return result.map((e) => Category.fromJson(e)).toList();
       }
@@ -206,9 +208,12 @@ static  Future<dynamic> createLoginState(String MobileNumber) async {
       );
 
       if (response.statusCode == 200) {
-        // Map<String, dynamic> data = new Map<String, dynamic>.from(json.decode(response.body));
-        final List result = jsonDecode(response.body);
-        return result.map((e) => CategoryProductList.fromJson(e)).toList();
+
+         var list =jsonDecode(response.body);
+        print(list);
+         // Map<String, dynamic> data = new Map<String, dynamic>.from(json.decode(response.body));
+        // final List result = jsonDecode(response.body);
+        return list.map((e) => CategoryProductList.fromJson(e)).toList();
       }
     }
     catch(e, stacktrace){
@@ -216,6 +221,33 @@ static  Future<dynamic> createLoginState(String MobileNumber) async {
     }
     throw Exception('Failed to update profile.');
   }
+
+
+
+
+
+/// add to cart api
+
+  // static Future<List<SubCategory>> getCart(String Authorization) async {
+  //   Response response= await get(Uri.parse("http://38.130.130.45:8000/api/veregood/cart/" ,{"Authorization": "Some token"}));
+  //   if(response.statusCode==200){
+  //     final List result=jsonDecode(response.body) ;
+  //     return result.map(((e) => SubCategory.fromJson(e))).toList();
+  //
+  //   }
+  //   else
+  //     throw Exception(response.reasonPhrase);
+  // }
+
+
+
+
+
+
+
+
+
+
 
 }
 

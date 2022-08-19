@@ -139,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 HomePage(),
                 UserProfile(),
                 ExploreScreen(),
-                Category(),
+                CategoryDetails(),
               ],
             ),
           );
