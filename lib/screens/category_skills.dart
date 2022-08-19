@@ -30,65 +30,61 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           Appbar("Category"),
           Expanded(
             child: FutureBuilder<List<Category>>(
-              future: ApiService.getListCategory(),
-              builder: (context, snapshot) {
-                if(snapshot.hasData){
-                  return ListView.builder(
-                    itemCount:snapshot.data!.length ,
-                      itemBuilder: (context,index){
-                        return  Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(snapshot.data![index].name.toString(),style: TextStyle(fontSize: 22)),
-                            ),
-                            categoryList(snapshot.data![index].subCategory!),
-                          ],
-                        );
+                future: ApiService.getListCategory(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                    snapshot.data![index].name.toString(),
+                                    style: TextStyle(fontSize: 22)),
+                              ),
+                              categoryList(snapshot.data![index].subCategory!),
+                            ],
+                          );
+                        });
 
-                      });
-
-
-
-
-                  //   // crossAxisAlignment: CrossAxisAlignment.start,
-                  //   children: [
-                  //     Appbar("Category"),
-                  //     Padding(
-                  //       padding: EdgeInsets.symmetric(horizontal: 10),
-                  //       child: Text(snapshot.data., style: TextStyle(fontSize: 22)),
-                  //     ),
-                  //     categoryList(Strings.fashion),
-                  //     Padding(
-                  //       padding: EdgeInsets.symmetric(horizontal: 10),
-                  //       child: Text("Electronics", style: TextStyle(fontSize: 22)),
-                  //     ),
-                  //     categoryList(Strings.Electronics),
-                  //     Padding(
-                  //       padding: EdgeInsets.symmetric(horizontal: 10),
-                  //       child: Text("Commercial", style: TextStyle(fontSize: 22)),
-                  //     ),
-                  //     categoryList(Strings.Commercial),
-                  //     Padding(
-                  //       padding: EdgeInsets.symmetric(horizontal: 10),
-                  //       child: Text("Home", style: TextStyle(fontSize: 22)),
-                  //     ),
-                  //     categoryList(Strings.Home),
-                  //     Padding(
-                  //       padding: EdgeInsets.symmetric(horizontal: 10),
-                  //       child: Text("Travel", style: TextStyle(fontSize: 22)),
-                  //     ),
-                  //     categoryList(Strings.Travel),
-                  //   ],
-                  // );
-                }
-                else if(snapshot.hasError){
-                  return Text("somethings is wrong");
-                }
-               return Center(child: CircularProgressIndicator());
-              }
-            ),
+                    //   // crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     Appbar("Category"),
+                    //     Padding(
+                    //       padding: EdgeInsets.symmetric(horizontal: 10),
+                    //       child: Text(snapshot.data., style: TextStyle(fontSize: 22)),
+                    //     ),
+                    //     categoryList(Strings.fashion),
+                    //     Padding(
+                    //       padding: EdgeInsets.symmetric(horizontal: 10),
+                    //       child: Text("Electronics", style: TextStyle(fontSize: 22)),
+                    //     ),
+                    //     categoryList(Strings.Electronics),
+                    //     Padding(
+                    //       padding: EdgeInsets.symmetric(horizontal: 10),
+                    //       child: Text("Commercial", style: TextStyle(fontSize: 22)),
+                    //     ),
+                    //     categoryList(Strings.Commercial),
+                    //     Padding(
+                    //       padding: EdgeInsets.symmetric(horizontal: 10),
+                    //       child: Text("Home", style: TextStyle(fontSize: 22)),
+                    //     ),
+                    //     categoryList(Strings.Home),
+                    //     Padding(
+                    //       padding: EdgeInsets.symmetric(horizontal: 10),
+                    //       child: Text("Travel", style: TextStyle(fontSize: 22)),
+                    //     ),
+                    //     categoryList(Strings.Travel),
+                    //   ],
+                    // );
+                  } else if (snapshot.hasError) {
+                    return Text("somethings is wrong");
+                  }
+                  return Center(child: CircularProgressIndicator());
+                }),
           ),
         ],
       ),
@@ -97,25 +93,23 @@ class _CategoryDetailsState extends State<CategoryDetails> {
 
   Widget categoryList(List<SubCategory> subCategory) {
     return Padding(
-
-      padding: const EdgeInsets.only(top: 10, bottom: 10,right: 10,left: 10),
+      padding: const EdgeInsets.only(top: 10, bottom: 10, right: 10, left: 10),
       child: Wrap(
           runSpacing: 10,
           spacing: 6,
           children: subCategory
               .map((e) => GestureDetector(
-                    onTap: () => Get.to(() => FutureBuilder<List<CategoryProductList>>(
-                      future: ApiService.getCategory(e.id.toString()),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData)(
-                             ProductPage(snapshot.data![0].categoryProduct!)
-                        );
-                        else if(snapshot.hasError){
-                        Text("someThings is wrong");
-                        }
-                        return Center(child: CircularProgressIndicator());
-                      }
-                    )),
+                    onTap: () =>
+                        Get.to(() => FutureBuilder<List<CategoryProduct>>(
+                            future: ApiService.getCategory(e.id.toString()),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData)
+                                (ProductPage(snapshot.data!));
+                              else if (snapshot.hasError) {
+                                Text("someThings is wrong");
+                              }
+                              return Center(child: CircularProgressIndicator());
+                            })),
                     child: Column(
                       children: [
                         CircleAvatar(
