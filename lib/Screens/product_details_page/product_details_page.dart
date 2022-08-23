@@ -5,23 +5,34 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:veregoodapps/controler/controller.dart';
 import 'package:veregoodapps/model/product.dart';
-import 'package:veregoodapps/screens/mobile_authitcation_screen/login.dart';
+import '../../constant/string.dart';
+import '../../model/category/category_product_list.dart';
 import '../../networking/service/location_service.dart';
 import '../../constant/color.dart';
 import '../../constant/image.dart';
 import '../cart_page/cart_page.dart';
+import '../delivery_address.dart';
+import '../mobile_authitcation_screen/login.dart';
 
 class ProductDetails extends StatefulWidget {
-  final ProductList? productList;
+  final ProductList? categoryProduct;
   final int? index;
 
-  ProductDetails(this.productList, this.index);
+  ProductDetails(this.categoryProduct, this.index);
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+
+
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,7 +94,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 child: CachedNetworkImage(
                   height: 250,
                   width: MediaQuery.of(context).size.width,
-                  imageUrl: widget.productList!.image.toString(),
+                  imageUrl: widget.categoryProduct!.image.toString(),
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
                       Center(
                           child: CircularProgressIndicator(
@@ -154,7 +165,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: CachedNetworkImage(
-                                imageUrl: widget.productList!.image.toString(),
+                                imageUrl: widget.categoryProduct!.image.toString(),
                                 progressIndicatorBuilder:
                                     (context, url, downloadProgress) => Center(
                                         child: CircularProgressIndicator(
@@ -169,14 +180,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                   Padding(
                     padding: const EdgeInsets.only(left: 5, top: 10),
                     child: Text(
-                      widget.productList!.title.toString(),
+                      widget.categoryProduct!.title.toString(),
                       style: TextStyle(fontSize: 18),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 5, bottom: 5),
                     child: Text(
-                      "\$${widget.productList!.price}",
+                      "\$${widget.categoryProduct!.price}",
                       style: TextStyle(fontSize: 22),
                     ),
                   ),
@@ -316,7 +327,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     padding:
                         const EdgeInsets.only(bottom: 10, left: 5, right: 5),
                     child: Text(
-                      widget.productList!.description.toString(),
+                      widget.categoryProduct!.description.toString(),
                       style: TextStyle(fontSize: 12),
                     ),
                   ),
@@ -458,7 +469,14 @@ class _ProductDetailsState extends State<ProductDetails> {
               Get.to(() => LoginScreen());
             }
             else{
-              Get.to(() => CartPage());
+
+              Strings.productList.add(widget.categoryProduct!);
+              print(Strings.productList);
+              Get.snackbar(
+                "Add to cart",
+                "Item is added in cart",
+                snackPosition: SnackPosition.BOTTOM
+              );
             }
           },
           child: Container(
@@ -475,7 +493,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               Get.to(() => LoginScreen());
             }
             else{
-              Get.to(() => CartPage());
+              Get.to(() => AddAddress());
             }
           },
           child: Container(

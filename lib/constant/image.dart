@@ -4,6 +4,7 @@
 
 import '../generated/assets.dart';
 
+
 class Imagess{
  static List image=[
     Assets.assetsBag1,Assets.assetsBag2,Assets.assetsBag3,Assets.assetsBag4,Assets.assetsBag5,Assets.assetsBag6,Assets.assetsBag7,Assets.assetsBag8,Assets.assetsBag9,Assets.assetsBag10
@@ -19,4 +20,5 @@ class Imagess{
 
  static List Categoies=[
    Assets.assetsFashion,  Assets.assetsElectronics,  Assets.assetsCommercial,  Assets.assetsEssentials,  Assets.assetsHome,  Assets.assetsService,  Assets.assetsTravel,];
+
 }

@@ -7,12 +7,13 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
+
 import '../../constant/string.dart';
 import '../../controler/controller.dart';
 import '../../generated/assets.dart';
 import '../../widget/list_view.dart';
 import '../constant_ui/appbar.dart';
+import '../mobile_authitcation_screen/profile_page.dart';
 
 
 class UserProfile extends StatefulWidget {

@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:veregoodapps/screens/no_internet_Scrren/no_internet_connetion.dart';
+
 
 import '../../constant/color.dart';
 import '../../constant/image.dart';
+import '../../constant/string.dart';
 import '../../generated/assets.dart';
+import '../../model/product.dart';
 import '../../networking/service/location_service.dart';
+import '../delivery_address.dart';
 import '../error_screens/error_screen.dart';
 
 class CartPage extends StatefulWidget {
@@ -19,8 +22,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  int value=2;
-
+  int value=1;
 
 
 
@@ -59,8 +61,8 @@ class _CartPageState extends State<CartPage> {
         ),
 body: TabBarView(
   children: <Widget>[
-    // MyCartPage(),
-    Center(child: Text("NO DATA FOUND",style: TextStyle(fontSize: 28),)),
+    Strings.productList.isNotEmpty?
+     MyCartPage():Center(child: Text("NO DATA FOUND",style: TextStyle(fontSize: 28),)),
     Center(child: Text("NO DATA FOUND",style: TextStyle(fontSize: 28),)),
     Center(child: Text("NO DATA FOUND",style: TextStyle(fontSize: 28),))
 
@@ -108,11 +110,11 @@ body: TabBarView(
         ),
         Expanded(
        child: SingleChildScrollView(
-         child: Column(
+           child: Column(
            crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Column(
-        children: Imagess.imageShoes.map((i) {
+        children: Strings.productList.map((i) {
           return Container(
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(vertical: 2.0),
@@ -122,7 +124,7 @@ body: TabBarView(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Flexible(child: Image.asset(i, fit: BoxFit.fill,width: 120,height: 120,)),
+                    Flexible(child: Image.network(i.image.toString(), fit: BoxFit.fill,width: 120,height: 120,)),
                     Flexible(
                       flex: 2,
                       child: Padding(
@@ -133,11 +135,18 @@ body: TabBarView(
                              Row(
                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                children: [
-                                 Text("Beats shoes with Lether",style: TextStyle(color: Colors.black,)),
-                                 Icon(Icons.delete,color: Colors.black,)
+                                 Flexible(child: Text(i.title.toString(),maxLines: 2,style: TextStyle(color: Colors.black,))),
+                                GestureDetector(
+                                  onTap:(){
+                                    setState(() {
+                                      Strings.productList.remove(i);
+                                    });
+
+          },
+                                    child: Icon(Icons.delete,color: Colors.black,))
                                ],
                              ),
-                            Text("product features..",style: TextStyle(color: Colors.black.withOpacity(0.5),fontSize: 13)),
+                            Text(i.description.toString(),style: TextStyle(color: Colors.black.withOpacity(0.5),fontSize: 13)),
                             Padding(
                               padding: const EdgeInsets.only(bottom: 5,top: 5),
                               child: Text("in stock",style: TextStyle(color: Colors.green,fontSize: 14,)),
@@ -194,7 +203,7 @@ body: TabBarView(
                                     ),
                                   ],
                                 ),
-                                Text("\$34.99" ,style: TextStyle(fontSize: 18,color: Colors.black),)
+                                Text("\$ ${i.price.toString()}" ,style: TextStyle(fontSize: 18,color: Colors.black),)
 
 
                               ],
@@ -223,7 +232,7 @@ body: TabBarView(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Price(10 item)",
+              "Price${Strings.productList.length}",
               style: TextStyle(fontSize: 12),
             ),
             Text(
@@ -290,16 +299,19 @@ body: TabBarView(
      ),
    ),
 
-      Container(
-        height: 50,
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.all(30),
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: appbar,
-          borderRadius: BorderRadius.circular(10)
-        ),  
-        child: FittedBox(child: Text("Proceed To Buy (10 Items)")),
+      InkWell(
+        onTap:()=> Get.to(() => AddAddress()),
+        child: Container(
+          height: 50,
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.all(30),
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: appbar,
+            borderRadius: BorderRadius.circular(10)
+          ),
+          child: FittedBox(child: Text("Proceed To Buy(${Strings.productList.length} item)")),
+        ),
       )
 
 

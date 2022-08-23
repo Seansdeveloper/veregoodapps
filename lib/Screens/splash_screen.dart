@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:veregoodapps/homeScreen.dart';
-import 'package:veregoodapps/screens/mobile_authitcation_screen/login.dart';
+
 
 import '../generated/assets.dart';
 

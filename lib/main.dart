@@ -5,10 +5,12 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:veregoodapps/homeScreen.dart';
-import 'package:veregoodapps/screens/splash_screen.dart';
 
+
+import 'Screens/splash_screen.dart';
 import 'auth_file/auth_controller.dart';
 import 'controler/controller.dart';
+
 import 'helper/shared_perferences_helper.dart';
 import 'language.dart';
 

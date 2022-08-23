@@ -1,20 +1,18 @@
 import 'dart:async';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:veregoodapps/homeScreen.dart';
-import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
-
 import '../../controler/controller.dart';
 import '../../controler/text_controller.dart';
 import '../../generated/assets.dart';
 import '../../responsive/responsive.dart';
 import '../home_screen/home.dart';
+
+
+
+
+
 
 class OtpPage extends StatefulWidget {
   const OtpPage({Key? key}) : super(key: key);

@@ -3,13 +3,15 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:veregoodapps/screens/mobile_authitcation_screen/login.dart';
-import 'package:veregoodapps/screens/mobile_authitcation_screen/profile_page.dart';
+
+import '../Screens/mobile_authitcation_screen/login.dart';
+import '../Screens/mobile_authitcation_screen/otp_page.dart';
+import '../Screens/mobile_authitcation_screen/profile_page.dart';
+import '../Screens/splash_screen.dart';
 import '../controler/controller.dart';
 import '../homeScreen.dart';
 import '../networking/api_service/api_service.dart';
-import '../screens/mobile_authitcation_screen/otp_page.dart';
-import '../screens/splash_screen.dart';
+
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();

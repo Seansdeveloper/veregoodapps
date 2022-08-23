@@ -4,20 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:veregoodapps/model/category/category_product_list.dart';
-import 'package:veregoodapps/networking/api_service/api_service.dart';
 import '../../constant/color.dart';
 import '../../controler/controller.dart';
-import '../../model/product.dart';
+import '../../networking/api_service/api_service.dart';
 import '../cart_page/cart_page.dart';
-import '../error_screens/error_screen.dart';
 import '../mobile_authitcation_screen/login.dart';
 import '../product_details_page/product_details_page.dart';
 
-
+///Todo do it later
 
 class ProductPage extends StatefulWidget {
-  final List<CategoryProduct> categoryProduct;
-  const ProductPage(this.categoryProduct, {Key? key}) : super(key: key);
+  final String categoryProductValue;
+   ProductPage(this.categoryProductValue, {Key? key}) : super(key: key);
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -64,7 +62,21 @@ class _ProductPageState extends State<ProductPage> {
                     ],
                   ),
                 ),
-                Expanded(child: cardPage()),
+              //   Expanded(child:
+              //
+              //   //
+              //   // FutureBuilder<List<L>>(
+              //   //   future: ApiService.getCategory(widget.categoryProductValue),
+              //   //   builder: (context, snapshot) {
+              //   //     if(snapshot.hasError){
+              //   //      Text("opoos somethings  is wrong");
+              //   //     }
+              //   //       else if(snapshot.hasData) {
+              //   //       return cardPage(snapshot.data![0].categoryProduct!);
+              //   //     }
+              //   //       return Center(child:CircularProgressIndicator());
+              //   //   }
+              //   // )),
               ],
             ),
           ),
@@ -73,18 +85,15 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
-  Widget cardPage() {
+  Widget cardPage(List<CategoryProduct> categoryProduct) {
     return GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: 0.72, crossAxisCount: 2),
         itemBuilder: (_, index) {
           return GestureDetector(
             onTap: (){
-
-              // Get.to(duration: Duration(milliseconds: 700),()=>ProductDetails(snapshot.data![index],index));
-
-
-            },
+              // Get.to(duration: Duration(milliseconds: 700),()=>ProductDetails(categoryProduct[index],index));
+              },
 
             child: Container(
               margin: EdgeInsets.all(10),
@@ -104,7 +113,7 @@ class _ProductPageState extends State<ProductPage> {
                       tag: "HERO"+[index].toString(),
                       child: CachedNetworkImage(
                         height: 100,
-                        imageUrl:widget.categoryProduct[index].image.toString(),
+                        imageUrl:categoryProduct[index].image.toString(),
                         progressIndicatorBuilder:
                             (context, url, downloadProgress) => Center(
                             child: CircularProgressIndicator(
@@ -115,7 +124,7 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                   ),
                   Text(
-                    widget.categoryProduct[index].title.toString(),
+                    categoryProduct[index].title.toString(),
                     style: TextStyle(color: Colors.black,fontSize: 16),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -127,7 +136,7 @@ class _ProductPageState extends State<ProductPage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(),
-                          child: Text("\$${widget.categoryProduct[index].price.toString()}",
+                          child: Text("\$${categoryProduct[index].price.toString()}",
                               style: TextStyle(color: Colors.black,fontSize: 18)),
                         ),
                         Container(
@@ -179,6 +188,6 @@ class _ProductPageState extends State<ProductPage> {
             ),
           );
         },
-        itemCount: widget.categoryProduct.length);
+        itemCount: categoryProduct.length);
   }
 }

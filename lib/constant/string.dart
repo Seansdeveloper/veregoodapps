@@ -1,3 +1,7 @@
+
+
+import '../model/product.dart';
+
 class Strings{
   static const String POPPINS = "Poppins";
   static const String OPEN_SANS = "OpenSans";
@@ -20,6 +24,9 @@ class Strings{
   static List Home=["Books","Kitchen","Furniture","Garden","Klussen"];
   static List Essentials=["Grocery","Health","Personal"];
   static List Travel=["Luggage","Accessories"];
+ static List<ProductList> productList= List.empty(growable: true);
+
+
 
 
 

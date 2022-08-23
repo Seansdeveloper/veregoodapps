@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:veregoodapps/screens/product_details_page/product_list_page.dart';
-import 'package:veregoodapps/screens/service_page/service_page.dart';
-
 import '../constant/string.dart';
+import '../Screens/service_page/service_page.dart';
 import '../model/category/category.dart';
 import '../model/category/category_product_list.dart';
 import '../model/category/sub_category.dart';
@@ -99,17 +97,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           spacing: 6,
           children: subCategory
               .map((e) => GestureDetector(
-                    onTap: () =>
-                        Get.to(() => FutureBuilder<List<CategoryProduct>>(
-                            future: ApiService.getCategory(e.id.toString()),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData)
-                                (ProductPage(snapshot.data!));
-                              else if (snapshot.hasError) {
-                                Text("someThings is wrong");
-                              }
-                              return Center(child: CircularProgressIndicator());
-                            })),
+                    onTap: () => Get.to(()=> ServicePage()),
+
                     child: Column(
                       children: [
                         CircleAvatar(

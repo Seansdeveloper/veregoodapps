@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
 
 
                                       },
-                                      child: categories(snapshot.data![i].name.toString(), snapshot.data![i].image.toString()));
+                                      child: categories(snapshot.data![i].name.toString(), snapshot.data![i].icon.toString()));
                                 });
                         }
                         return CircularProgressIndicator();
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                                       BoxDecoration(color: Colors.transparent),
                                   child: GestureDetector(
                                       child: CachedNetworkImage(
-                                        imageUrl: "http://38.130.130.45:8000" +
+                                        imageUrl: "http://38.130.130.45:8000"+
                                             i.image!,
                                         imageBuilder:
                                             (context, imageProvider) =>
@@ -210,7 +210,24 @@ class _HomePageState extends State<HomePage> {
             ClipOval(
               child: SizedBox.fromSize(
                 size: Size.fromRadius(30), // Image radius
-                child: Image.asset(categoi, fit: BoxFit.cover),
+                child:  CachedNetworkImage(
+                  imageUrl: "http://38.130.130.45:8000"+
+                      categoi.toString(),
+                  imageBuilder:
+                      (context, imageProvider) =>
+                      Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                  placeholder: (context, url) => Center(
+                      child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) =>
+                      Icon(Icons.error),
+                ),
               ),
             ),
             SizedBox(
@@ -380,13 +397,26 @@ class _HomePageState extends State<HomePage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Image.network(
-                                  "http://38.130.130.45:8000" +
+                                CachedNetworkImage(
+                                  imageUrl: "http://38.130.130.45:8000"+
                                       snapshot.data![index].product!.image
                                           .toString(),
-                                  height: 140,
-                                  alignment: Alignment.center,
+                                  imageBuilder:
+                                      (context, imageProvider) =>
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                      ),
+                                  placeholder: (context, url) => Center(
+                                      child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
                                 ),
+
                                 Text(
                                   snapshot.data![index].product!.title
                                       .toString(),

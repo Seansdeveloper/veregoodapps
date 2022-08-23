@@ -5,6 +5,9 @@ import 'package:veregoodapps/model/check_user/check_usser.dart';
 import 'package:http/http.dart';
 import 'package:veregoodapps/model/banner/banner.dart';
 import 'package:veregoodapps/model/collection/collection.dart';
+import '../../Screens/mobile_authitcation_screen/profile_page.dart';
+import '../../Screens/onborading_screen/onborading_screen.dart';
+
 import '../../homeScreen.dart';
 import '../../model/CreateProfile.dart';
 import '../../model/category/category.dart';
@@ -12,8 +15,7 @@ import '../../model/category/category_product_list.dart';
 import '../../model/category/sub_category.dart';
 import '../../model/product.dart';
 import '../../model/product_list/product_list.dart';
-import '../../screens/mobile_authitcation_screen/profile_page.dart';
-import '../../screens/onborading_screen/onborading_screen.dart';
+
 
 class ApiService {
   static Future<List<headline>> getBanner() async {
@@ -142,7 +144,7 @@ class ApiService {
   }
 
   /// this api return category data
-  static Future<List<CategoryProduct>> getCategory(String data) async {
+  static Future<List> getCategory(String data) async {
     try {
       final Response response = await post(
         Uri.parse('http://38.130.130.45:8000/api/veregood/category/'),
@@ -155,13 +157,19 @@ class ApiService {
       );
 
       if (response.statusCode == 200) {
-        var data = jsonDecode(response.body);
+        // var data = jsonDecode(response.body);
         // print(list);
         // Map<String, dynamic> data = new Map<String, dynamic>.from(json.decode(response.body));
         // final List result = jsonDecode(response.body);
-        return data["category_product"]
-            .map((e) => CategoryProduct.fromJson(e))
-            .toList();
+        List data = json.decode(response.body);
+        // List<dynamic> categoryProduct = map["category_product"];
+        final _data = List<dynamic>.from(
+          data.map<dynamic>(
+                (dynamic item) => item,
+          ),
+        );
+
+        return _data ;
       }
     } catch (e, stacktrace) {
       print(stacktrace.toString());

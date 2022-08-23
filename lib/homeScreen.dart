@@ -4,16 +4,18 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:veregoodapps/screens/cart_page/cart_page.dart';
-import 'package:veregoodapps/screens/category_skills.dart';
-import 'package:veregoodapps/screens/explore_screen/ExploreScreen.dart';
-import 'package:veregoodapps/screens/home_screen/home.dart';
-import 'package:veregoodapps/screens/mobile_authitcation_screen/login.dart';
-import 'package:veregoodapps/screens/profile_page/user_profile.dart';
+
 import 'package:veregoodapps/widget/bottomNavigationbar.dart';
+import 'Screens/cart_page/cart_page.dart';
+import 'Screens/category_skills.dart';
+import 'Screens/explore_screen/ExploreScreen.dart';
+import 'Screens/home_screen/home.dart';
+import 'Screens/mobile_authitcation_screen/login.dart';
+import 'Screens/profile_page/user_profile.dart';
 import 'controler/controller.dart';
 import 'controler/landing_page_controller.dart';
 import 'data/navigation_model.dart';
+
 
 class HomeScreen extends StatefulWidget {
   dynamic index;

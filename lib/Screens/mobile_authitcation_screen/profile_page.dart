@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:veregoodapps/homeScreen.dart';
 import 'package:veregoodapps/networking/api_service/api_service.dart';
-import 'package:veregoodapps/screens/onborading_screen/onborading_screen.dart';
+
 
 import '../../auth_file/user_controller.dart';
 import '../../constant/color.dart';
