@@ -4,6 +4,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../networking/service/fetch.dart' as http;
+import '../networking/service/urls.dart' as urls;
 import '../Screens/mobile_authitcation_screen/login.dart';
 import '../Screens/mobile_authitcation_screen/otp_page.dart';
 import '../Screens/mobile_authitcation_screen/profile_page.dart';
@@ -24,8 +26,7 @@ class AuthController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    // auth is coming from the constants.dart file but it is basically FirebaseAuth.instance.
-    // Since we have to use that many times I just made a constant file and declared there
+
 
     firebaseUser = Rx<User?>(auth.currentUser);
     googleSignInAccount = Rx<GoogleSignInAccount?>(googleSign.currentUser);
@@ -62,7 +63,9 @@ class AuthController extends GetxController {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verifirdId, smsCode: otp);
       auth.signInWithCredential(credential).then((value) {
-        ApiService.createLoginState(Phone);
+        ApiService.createLoginState(Phone.substring(3));
+
+
         print(value.user);
       }).catchError((onError) {
         Get.snackbar(

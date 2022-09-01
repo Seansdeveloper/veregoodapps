@@ -11,7 +11,7 @@ import 'Screens/splash_screen.dart';
 import 'auth_file/auth_controller.dart';
 import 'controler/controller.dart';
 
-import 'helper/shared_perferences_helper.dart';
+import 'controler/text_controller.dart';
 import 'language.dart';
 
 
@@ -20,10 +20,11 @@ import 'language.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-
+/// firebase  initialixation
   await firebaseInitialization.then((value) {
     Get.put(AuthController());
   });
+  Get.put(TextController());
   runApp(
       GetMaterialApp(
         debugShowCheckedModeBanner: false,

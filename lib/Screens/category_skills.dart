@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:veregoodapps/Screens/product_details_page/product_list_page.dart';
 import '../constant/string.dart';
 import '../Screens/service_page/service_page.dart';
 import '../model/category/category.dart';
 import '../model/category/category_product_list.dart';
 import '../model/category/sub_category.dart';
+import '../model/product.dart';
 import '../networking/api_service/api_service.dart';
 import 'constant_ui/appbar.dart';
 
@@ -97,7 +99,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           spacing: 6,
           children: subCategory
               .map((e) => GestureDetector(
-                    onTap: () => Get.to(()=> ServicePage()),
+                    onTap: () => Get.to(()=> ProductsList(e.id.toString())),
 
                     child: Column(
                       children: [

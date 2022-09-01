@@ -18,6 +18,6 @@ class CheckUser {
       data['profile'] = this.profile!.toJson();
     }
     data['token'] = this.token;
-    return data;
+     return data;
   }
 }

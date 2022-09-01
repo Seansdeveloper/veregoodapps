@@ -43,7 +43,6 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
   StreamController<ErrorAnimationType>? errorController;
   String currentText = "";
   final controller = Get.put(TextController());
-  final controllers = Get.find<TextController>();
   bool _flag = false;
 
   late Animation<double> _myAnimation;
@@ -139,7 +138,7 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: IntlPhoneField(
-                    controller: controller.textController,
+                    controller: controller.mobileNumberTextController,
                     keyboardType: TextInputType.number,
                     showDropdownIcon: false,
 
@@ -170,6 +169,8 @@ class _MobileLoginScreenState extends State<MobileLoginScreen>
                     ),
                     onChanged: (phone) {
                       currentText = phone.completeNumber;
+
+
                     },
                     onCountryChanged: (country) {
                       print('Country changed to: ${country.name}');

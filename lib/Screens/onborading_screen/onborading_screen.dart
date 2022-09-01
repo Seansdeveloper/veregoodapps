@@ -6,6 +6,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:veregoodapps/homeScreen.dart';
 
+import '../../controler/text_controller.dart';
+import '../../helpers/shared_preferences_helper.dart';
+
+import '../../networking/service/fetch.dart' as http;
+import '../../networking/service/urls.dart' as urls;
 import '../../constant/color.dart';
 import '../../constant/string.dart';
 import '../../model/slider.dart';
@@ -32,6 +37,7 @@ class _SliderLayoutViewState extends State<SliderLayoutView> {
         _currentPage = 0;
       }
     });
+
   }
 
   @override
@@ -147,3 +153,4 @@ class _SliderLayoutViewState extends State<SliderLayoutView> {
 
 
 }
+

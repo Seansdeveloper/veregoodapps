@@ -8,16 +8,20 @@ import 'package:veregoodapps/model/collection/collection.dart';
 import '../../Screens/mobile_authitcation_screen/profile_page.dart';
 import '../../Screens/onborading_screen/onborading_screen.dart';
 
+
+import '../../helpers/shared_preferences_helper.dart';
 import '../../homeScreen.dart';
 import '../../model/CreateProfile.dart';
 import '../../model/category/category.dart';
-import '../../model/category/category_product_list.dart';
 import '../../model/category/sub_category.dart';
 import '../../model/product.dart';
 import '../../model/product_list/product_list.dart';
 
 
 class ApiService {
+
+
+  /// getting banner in home screen
   static Future<List<headline>> getBanner() async {
     Response response = await get(Uri.parse(
         "http://38.130.130.45:8000/api/veregood/banner/?device=mobile"));
@@ -28,16 +32,25 @@ class ApiService {
       throw Exception(response.reasonPhrase);
   }
 
-  static Future<List<ProductList>> getProduct() async {
-    Response response =
-        await get(Uri.parse("https://fakestoreapi.com/products"));
-    if (response.statusCode == 200) {
-      final List result = jsonDecode(response.body);
-      return result.map(((e) => ProductList.fromJson(e))).toList();
-    } else
-      throw Exception(response.reasonPhrase);
-  }
 
+
+
+
+
+  // static Future<List<ProductList>> getProduct() async {
+  //   Response response =
+  //       await get(Uri.parse("https://fakestoreapi.com/products"));
+  //   if (response.statusCode == 200) {
+  //     final List result = jsonDecode(response.body);
+  //     return result.map(((e) => ProductList.fromJson(e))).toList();
+  //   } else
+  //     throw Exception(response.reasonPhrase);
+  // }
+
+
+
+
+  /// if user already present with thi mobile number
   static Future<dynamic> createLoginState(String MobileNumber) async {
     Response response = await get(Uri.parse(
         "http://38.130.130.45:8000/api/veregood/check-user/?mobile_number=" +
@@ -45,11 +58,17 @@ class ApiService {
     if (response.statusCode == 200) {
       print(response.body);
       return Get.offAll(() => HomeScreen(0));
+
     } else {
+
       return Get.offAll(() => ProfilePage());
     }
   }
 
+
+
+
+  /// get collection list
   static Future<List<Collections>> getCollection() async {
     Response response = await get(
         Uri.parse("http://38.130.130.45:8000/api/veregood/collection/"));
@@ -60,6 +79,9 @@ class ApiService {
       throw Exception(response.reasonPhrase);
   }
 
+
+
+  /// if user is  get  updated data or not  this api  work
   static Future<CreateProfile> updatedata(
       String name, String email, String mobileNumber) async {
     final Response response = await post(
@@ -87,6 +109,10 @@ class ApiService {
       throw Exception('Failed to update profile.');
     }
   }
+
+
+
+  /// the api  will get data collection list with id
 
   static Future<List<ProductData>> getData(String data) async {
     try {
@@ -123,6 +149,10 @@ class ApiService {
       throw Exception(response.reasonPhrase);
   }
 
+
+
+
+  /// return data with getList colletion
   static Future<List<Category>> getListCategory() async {
     try {
       final Response response = await put(
@@ -142,6 +172,9 @@ class ApiService {
     }
     throw Exception('Failed to update profile.');
   }
+
+
+
 
   /// this api return category data
   static Future<List> getCategory(String data) async {
@@ -177,17 +210,33 @@ class ApiService {
     throw Exception('Failed to update profile.');
   }
 
-  /// add to cart api
 
-  // static Future<List<SubCategory>> getCart(String Authorization) async {
-  //   Response response= await get(Uri.parse("http://38.130.130.45:8000/api/veregood/cart/" ,{"Authorization": "Some token"}));
-  //   if(response.statusCode==200){
-  //     final List result=jsonDecode(response.body) ;
-  //     return result.map(((e) => SubCategory.fromJson(e))).toList();
-  //
-  //   }
-  //   else
-  //     throw Exception(response.reasonPhrase);
-  // }
+
+
+  /// add to cart api
+  static Future<List<CheckUser>> getUser(String mobile) async {
+    Response response= await get(Uri.parse("http://38.130.130.45:8000/api/veregood/check-user/?mobile_number="+mobile,
+
+        ));
+    if(response.statusCode==200){
+      final List result=jsonDecode(response.body) ;
+      return result.map(((e) => CheckUser.fromJson(e))).toList();
+
+    }
+    else
+      throw Exception(response.reasonPhrase);
+  }
+
+
+   /// API GET ADDRESS APP
+
+
+
+
+
+
+
+
+
 
 }

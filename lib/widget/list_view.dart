@@ -11,6 +11,7 @@ class ListField extends StatelessWidget {
   final String Name;
 
 
+
   ListField(this.Name);
 
 
@@ -20,7 +21,7 @@ class ListField extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: (){
-            print(Name);
+
           },
           child: Padding(
             padding: const EdgeInsets.all(10.0),

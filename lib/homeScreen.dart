@@ -14,7 +14,11 @@ import 'Screens/mobile_authitcation_screen/login.dart';
 import 'Screens/profile_page/user_profile.dart';
 import 'controler/controller.dart';
 import 'controler/landing_page_controller.dart';
+import 'controler/text_controller.dart';
 import 'data/navigation_model.dart';
+import 'helpers/shared_preferences_helper.dart';
+import '../networking/service/fetch.dart' as http;
+import '../networking/service/urls.dart' as urls;
 
 
 class HomeScreen extends StatefulWidget {
@@ -32,9 +36,25 @@ class _HomeScreenState extends State<HomeScreen> {
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final LandingPageController landingPageController =
   Get.put(LandingPageController(), permanent: false);
+  final controller = Get.find<TextController>();
+
+
+
+
 
   @override
   initState() {
+    http.get(urls.check_user+"?mobile_number="+controller.mobileNumberText.value, {}).then((response) {
+      SharedPreferencesHelper.setValues({
+        SharedPreferencesHelper
+            .mobile: response['profile']['mobile_number'].toString(),
+        SharedPreferencesHelper
+            .email: response['profile']['email'],
+        SharedPreferencesHelper
+            .firstName: response['profile']['name'],
+        SharedPreferencesHelper.token: response['token'],
+      });
+    });
     super.initState();
   }
 

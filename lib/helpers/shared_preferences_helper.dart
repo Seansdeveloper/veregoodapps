@@ -51,13 +51,5 @@ class SharedPreferencesHelper {
     });
   }
 
-  static Future<void> setMembershipFlag(bool membershipFlag) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool(SharedPreferencesHelper.doesHoldMembership, membershipFlag);
-  }
 
-  static Future<void> setIsEmailVerified(bool emailVerifiedFlag) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool(SharedPreferencesHelper.isEmailVerified, emailVerifiedFlag);
-  }
 }

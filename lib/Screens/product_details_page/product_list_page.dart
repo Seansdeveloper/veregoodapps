@@ -1,27 +1,41 @@
+
+
+
+
+
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:veregoodapps/model/category/category_product_list.dart';
+
 import '../../constant/color.dart';
 import '../../controler/controller.dart';
-import '../../networking/api_service/api_service.dart';
+import '../../model/category/category_product_list.dart';
 import '../cart_page/cart_page.dart';
 import '../mobile_authitcation_screen/login.dart';
-import '../product_details_page/product_details_page.dart';
 
-///Todo do it later
-
-class ProductPage extends StatefulWidget {
-  final String categoryProductValue;
-   ProductPage(this.categoryProductValue, {Key? key}) : super(key: key);
+class ProductsList extends StatefulWidget {
+  final String id;
+  const ProductsList(this.id, {Key? key}) : super(key: key);
 
   @override
-  State<ProductPage> createState() => _ProductPageState();
+  State<ProductsList> createState() => _ProductsListState();
 }
 
-class _ProductPageState extends State<ProductPage> {
+
+
+
+class _ProductsListState extends State<ProductsList> {
+
+  @override
+  void initState() {
+
+
+    super.initState();
+  }
+
+
+
 
 
   @override
@@ -53,7 +67,7 @@ class _ProductPageState extends State<ProductPage> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: Icon(
+                         child: Icon(
                           Icons.shopping_cart,
                           size: 22,
                           color: Colors.white,
@@ -62,21 +76,21 @@ class _ProductPageState extends State<ProductPage> {
                     ],
                   ),
                 ),
-              //   Expanded(child:
-              //
-              //   //
-              //   // FutureBuilder<List<L>>(
-              //   //   future: ApiService.getCategory(widget.categoryProductValue),
-              //   //   builder: (context, snapshot) {
-              //   //     if(snapshot.hasError){
-              //   //      Text("opoos somethings  is wrong");
-              //   //     }
-              //   //       else if(snapshot.hasData) {
-              //   //       return cardPage(snapshot.data![0].categoryProduct!);
-              //   //     }
-              //   //       return Center(child:CircularProgressIndicator());
-              //   //   }
-              //   // )),
+                //   Expanded(child:
+                //
+                //   //
+                //   // FutureBuilder<List<L>>(
+                //   //   future: ApiService.getCategory(widget.categoryProductValue),
+                //   //   builder: (context, snapshot) {
+                //   //     if(snapshot.hasError){
+                //   //      Text("opoos somethings  is wrong");
+                //   //     }
+                //   //       else if(snapshot.hasData) {
+                //   //       return cardPage(snapshot.data![0].categoryProduct!);
+                //   //     }
+                //   //       return Center(child:CircularProgressIndicator());
+                //   //   }
+                //   // )),
               ],
             ),
           ),
@@ -92,8 +106,8 @@ class _ProductPageState extends State<ProductPage> {
         itemBuilder: (_, index) {
           return GestureDetector(
             onTap: (){
-              // Get.to(duration: Duration(milliseconds: 700),()=>ProductDetails(categoryProduct[index],index));
-              },
+              //Get.to(duration: Duration(milliseconds: 700),()=>ProductDetails(categoryProduct[index],index));
+            },
 
             child: Container(
               margin: EdgeInsets.all(10),

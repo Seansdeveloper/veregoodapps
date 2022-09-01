@@ -2,7 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import '../../constant/image.dart';
 import '../../constant/string.dart';
 import '../../generated/assets.dart';
@@ -12,6 +13,7 @@ import '../../model/collection/collection.dart';
 import '../../model/product_list/product_list.dart';
 import '../../networking/api_service/api_service.dart';
 import '../../networking/service/location_service.dart';
+import '../body_gurad/bodygurad_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -270,11 +272,16 @@ class _HomePageState extends State<HomePage> {
                             const EdgeInsets.only(left: 8, right: 8, top: 5),
                         child: Column(
                           children: [
-                            CircleAvatar(
-                              radius: 35,
-                              backgroundColor: Colors.blue,
-                              child: Image.asset(Assets.assetsBodyguard,
-                                  fit: BoxFit.contain),
+                            GestureDetector(
+                              onTap:() {
+                                   Get.to(()=>BodyGurad());
+                                   },
+                              child: CircleAvatar(
+                                radius: 35,
+                                backgroundColor: Colors.blue,
+                                child: Image.asset(Assets.assetsBodyguard,
+                                    fit: BoxFit.contain),
+                              ),
                             ),
                             Text("bodygurad")
                           ],
